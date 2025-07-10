@@ -1,298 +1,300 @@
-# 🚀 CRYPTO ARBITRAGE BOT - SETUP COMPLETO
+# 🚀 Guida Setup Completa - Polygon L2
 
-## ✅ Progetto Creato con Successo!
+Guida dettagliata per configurare e avviare il bot di arbitraggio crypto su **Polygon Layer 2** con analisi completa dei costi.
 
-Il bot di arbitraggio crypto è stato creato completamente con tutte le funzionalità richieste e **logging esteso** per tutte le operazioni critiche.
+## 📋 Prerequisiti
 
-### 🎯 **STATO ATTUALE**
-- **Test generali**: **80% passati** (8/10) ✅
-- **Test contratti**: **73% passati** (8/11) ✅
-- **Versione testnet**: **Pronta e ottimizzata** ✅
-- **Sicurezza**: **Implementata** ✅
+### 💻 **Sistema**
+- **OS**: Windows 10+, macOS 10.15+, Ubuntu 18.04+
+- **Node.js**: Versione 16.0.0 o superiore
+- **npm**: Versione 8.0.0 o superiore
+- **Git**: Versione 2.30.0 o superiore
 
-## 📁 Struttura del Progetto
-
-```
-crypto-arbitrage-bot/
-├── contracts/                    # Smart contracts Solidity
-│   ├── Arbitrage.sol             # Contratto principale per arbitraggio
-│   └── MockERC20.sol             # Token mock per testing
-├── bot/                          # Bot JavaScript
-│   ├── index.js                  # Bot principale con logging esteso
-│   ├── monitor.js                # Monitoraggio prezzi DEX
-│   └── config.js                 # Configurazione completa
-├── scripts/                      # Script utilità
-│   ├── deploy.js                 # Deploy contratto con logging
-│   └── setup.js                  # Setup automatico progetto
-├── test/                         # Test suite
-│   └── test-arbitrage.js         # Test contratto con logging
-├── logs/                         # Directory log
-│   └── README.md                 # Documentazione log
-├── package.json                  # Dipendenze e script
-├── hardhat.config.js             # Configurazione Hardhat
-├── start.js                      # Script di avvio sicuro
-├── .env.template                 # Template configurazione
-├── .env.testnet                  # Configurazione testnet
-├── start-testnet.js              # Script avvio testnet
-├── TESTNET_GUIDE.md              # Guida completa testnet
-├── .gitignore                    # Git ignore
-└── README.md                     # Documentazione completa
-```
-
-## 🔧 Setup Iniziale
-
-### 1. Installa Dipendenze
+### 🔧 **Verifica Prerequisiti**
 ```bash
+# Verifica Node.js
+node --version  # Deve essere >= 16.0.0
+
+# Verifica npm
+npm --version   # Deve essere >= 8.0.0
+
+# Verifica Git
+git --version   # Deve essere >= 2.30.0
+```
+
+## 🎯 Installazione
+
+### 1️⃣ **Clone Repository**
+```bash
+# Clona il repository
+git clone https://github.com/FlavioLombardi95/dex_bot.git
+cd dex_bot
+
+# Verifica struttura
+ls -la
+```
+
+### 2️⃣ **Installazione Dipendenze**
+```bash
+# Installa dipendenze
 npm install
+
+# Verifica installazione
+npm list --depth=0
 ```
 
-### 2. Configurazione
-```bash
-# Copia il template di configurazione
-cp .env.template .env
+### 3️⃣ **Configurazione Ambiente**
 
-# Modifica il file .env con le tue credenziali
+#### 🔑 **Setup Wallet**
+```bash
+# Crea file .env
+cp polygon-mainnet.env .env
+
+# Modifica configurazione
 nano .env
 ```
 
-### 3. Configura le Variabili d'Ambiente
-Nel file `.env`, configura:
-
+#### 📝 **Configurazione .env**
 ```env
-# OBBLIGATORIO: Chiave privata del wallet (senza 0x)
-PRIVATE_KEY=your_private_key_here
+# Wallet Configuration
+PRIVATE_KEY=your_polygon_private_key_here
 
-# OBBLIGATORIO: URL RPC blockchain
-RPC_URL=https://rpc.ankr.com/eth_goerli
+# Polygon RPC Configuration
+RPC_URL=https://polygon-rpc.com
+CHAIN_ID=137
 
-# Altre configurazioni (opzionali)
-MIN_PROFIT_THRESHOLD=0.01
+# Bot Configuration
+MIN_PROFIT_THRESHOLD=0.002
+MAX_SLIPPAGE=0.02
+DRY_RUN=true
 LOG_LEVEL=info
+
+# DEX Configuration
+UNISWAP_ROUTER=0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff
+SUSHISWAP_ROUTER=0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506
+
+# Flash Loan Configuration
+BALANCER_VAULT=0xBA12222222228d8Ba445958a75a0704d566BF2C8
+FLASH_LOAN_FEE=0.0009
+
+# Gas Configuration (Polygon L2)
+GAS_LIMIT=500000
+GAS_PRICE=30000000000  # 30 gwei
 ```
 
-### 4. Ottieni ETH di Test
-- **Goerli Faucet**: https://goerlifaucet.com/
-- **Sepolia Faucet**: https://sepoliafaucet.com/
+## 🧪 Test e Validazione
 
-### 5. Compila i Contratti
+### 🔍 **Test Sistema Base**
 ```bash
-npm run compile
+# Test configurazione
+npm run test:polygon
+
+# Verifica connessione
+npm run test:connection
+
+# Test contratti
+npm run test:contracts
 ```
 
-### 6. Deploya il Contratto
+### 📊 **Analisi Costi**
 ```bash
-npm run deploy
+# Analisi costi Polygon
+npm run polygon-costs
+
+# Confronto Ethereum vs Polygon
+npm run costs
+
+# Analisi profittabilità
+npm run profitability
 ```
 
-### 7. Avvia il Bot
-
-#### 🧪 **Modalità Testnet (Raccomandata)**
+### 🔍 **Analisi Opportunità**
 ```bash
-# Avvio sicuro con configurazione testnet
-npm run start:testnet
+# Analisi opportunità storiche
+npm run analyze
+
+# Monitoraggio tempo reale
+npm run real-data:monitor
+
+# Analisi dati salvati
+npm run real-data:analyze
 ```
 
-#### 🚀 **Modalità Standard**
+## 🚀 Deploy e Avvio
+
+### 1️⃣ **Deploy Smart Contract**
 ```bash
-# Avvio standard
-npm start
+# Deploy su Polygon
+npm run deploy:polygon
+
+# Verifica deploy
+npm run verify:contract
 ```
 
-### 8. Esegui Test Completi
+### 2️⃣ **Configurazione Finale**
 ```bash
-# Test automatici del sistema
-npm run test:setup
+# Mostra configurazione ottimale
+npm run config
+
+# Setup Polygon
+npm run setup:polygon
 ```
 
-## 🛠️ Script Disponibili
-
-| Comando | Descrizione |
-|---------|-------------|
-| `npm start` | Avvia il bot con controlli di sicurezza |
-| `npm run start:testnet` | **Avvia bot in modalità testnet** ✅ |
-| `npm run bot` | Avvia direttamente il bot |
-| `npm run deploy` | Deploya il contratto su blockchain |
-| `npm run compile` | Compila i contratti Solidity |
-| `npm run test` | Esegue i test contratti |
-| `npm run test:setup` | **Test completi del sistema** ✅ |
-| `npm run setup` | Setup automatico completo |
-
-### 🧪 **Script Testnet Specializzati**
-- **`npm run start:testnet`**: Avvio ottimizzato per testnet
-- **`npm run test:setup`**: Test completi (80% successo)
-- **Configurazione automatica**: Modalità sicura di default
-
-## 📊 Logging Esteso
-
-### Parti Critiche con Logging Completo:
-
-#### 🔐 **Connessione Blockchain**
-```javascript
-// Logs per connessione RPC
-logger.info('Provider blockchain configurato', { rpcUrl });
-logger.error('Errore connessione blockchain', { error, rpcUrl });
-```
-
-#### 💰 **Monitoraggio Prezzi**
-```javascript
-// Logs per recupero prezzi
-logger.error('Errore nel recupero prezzo', { error, tokenA, tokenB });
-logger.info('Opportunità di arbitraggio rilevata', { opportunity });
-```
-
-#### 🔄 **Transazioni**
-```javascript
-// Logs per transazioni
-logger.info('Transazione arbitraggio inviata', { txHash, gasLimit });
-logger.error('Transazione arbitraggio fallita', { txHash, error });
-```
-
-#### ⚡ **Flash Loan**
-```javascript
-// Logs per flash loan
-logger.info('Flash loan iniziato', { token, amount, txHash });
-logger.error('Flash loan callback failed', { reason, data });
-```
-
-#### 📈 **Calcoli Arbitraggio**
-```javascript
-// Logs per calcoli profitto
-logger.info('Arbitraggio completato con successo', { profit, txHash });
-logger.error('Arbitrage not profitable', { amountOut, totalRepayment });
-```
-
-## 🔍 Monitoraggio Log
-
-### Visualizza Log in Tempo Reale
+### 3️⃣ **Avvio Bot**
 ```bash
-tail -f logs/arbitrage.log
+# Avvio in modalità test
+npm run start:polygon
+
+# Avvio con logging dettagliato
+LOG_LEVEL=debug npm run start:polygon
+
+# Avvio in background
+nohup npm run start:polygon > bot.log 2>&1 &
 ```
 
-### Cerca Errori
+## 📊 Monitoraggio e Debug
+
+### 📋 **Logging**
 ```bash
-grep "ERROR" logs/arbitrage.log
+# Monitora log in tempo reale
+tail -f logs/polygon-arbitrage.log
+
+# Cerca errori
+grep "ERROR" logs/polygon-arbitrage.log
+
+# Cerca opportunità
+grep "opportunità" logs/polygon-arbitrage.log
 ```
 
-### Cerca Opportunità
+### 🔧 **Debugging**
 ```bash
-grep "opportunità" logs/arbitrage.log
+# Debug completo
+LOG_LEVEL=debug npm run start:polygon
+
+# Test connessione RPC
+npm run test:rpc
+
+# Verifica configurazione
+node -e "console.log(require('./bot/config.js'))"
 ```
 
-### Conta Transazioni Eseguite
+## 💰 Configurazione Ottimale
+
+### 🎯 **Parametri Raccomandati**
+- **Soglia profitto minimo**: 0.2%
+- **Trade size minimo**: $10,000
+- **Gas price**: 30 gwei (Polygon)
+- **Slippage massimo**: 2%
+- **Frequenza controllo**: 1 secondo
+
+### 📈 **Analisi Costi Polygon**
+| Trade Size | Spread Minimo | Profitto Netto |
+|------------|---------------|----------------|
+| $1,000     | 3.16%        | -$31.60        |
+| $5,000     | 0.70%        | -$35.00        |
+| $10,000    | 0.40%        | $5.00          |
+| $25,000    | 0.21%        | $27.50         |
+| $50,000    | 0.15%        | $62.50         |
+| $100,000   | 0.12%        | $107.50        |
+
+## 🔒 Sicurezza
+
+### 🛡️ **Best Practices**
+- **Usa sempre testnet** prima di mainnet
+- **Mantieni DRY_RUN=true** inizialmente
+- **Monitora i log** continuamente
+- **Testa con piccoli importi**
+- **Aggiorna regolarmente** le dipendenze
+
+### ⚠️ **Controlli Sicurezza**
 ```bash
-grep "Arbitraggio completato" logs/arbitrage.log | wc -l
+# Verifica configurazione sicurezza
+npm run security:check
+
+# Test funzioni di emergenza
+npm run test:emergency
+
+# Verifica accessi
+npm run verify:access
 ```
 
-## 🚨 Gestione Errori
+## 📚 Risorse Utili
 
-### Errori Comuni e Soluzioni:
+### 🔗 **Link Importanti**
+- [Polygon Faucet](https://faucet.polygon.technology/)
+- [Polygon Explorer](https://polygonscan.com/)
+- [Polygon RPC](https://polygon-rpc.com/)
+- [Uniswap Polygon](https://app.uniswap.org/)
+- [SushiSwap Polygon](https://app.sushi.com/)
 
-#### ❌ "File .env non trovato"
+### 📖 **Documentazione**
+- [README.md](README.md) - Guida principale
+- [POLYGON_GUIDE.md](POLYGON_GUIDE.md) - Guida Polygon
+- [TESTNET_GUIDE.md](TESTNET_GUIDE.md) - Guida testnet
+- [CHANGELOG.md](CHANGELOG.md) - Changelog completo
+
+## 🆘 Troubleshooting
+
+### ❌ **Problemi Comuni**
+
+#### **Errore Connessione RPC**
 ```bash
-cp .env.template .env
-# Configura le variabili nel file .env
+# Prova endpoint alternativi
+RPC_URL=https://rpc-mainnet.maticvigil.com npm run start:polygon
+RPC_URL=https://polygon-rpc.com npm run start:polygon
 ```
 
-#### ❌ "Errore connessione blockchain"
-- Verifica che RPC_URL sia corretto
-- Controlla la connessione internet
-- Verifica che il provider RPC sia attivo
-
-#### ❌ "Saldo wallet basso"
-- Ottieni ETH da un faucet testnet
-- Verifica che il wallet abbia fondi sufficienti
-
-#### ❌ "Contratto non deployato"
+#### **Errore Gas**
 ```bash
-npm run deploy
+# Aumenta gas limit
+GAS_LIMIT=1000000 npm run start:polygon
+
+# Aumenta gas price
+GAS_PRICE=50000000000 npm run start:polygon
 ```
 
-#### ❌ "Nessuna liquidità disponibile"
-- Normale su testnet
-- Controlla che le coppie esistano sui DEX
-- Verifica gli indirizzi dei token
+#### **Errore Wallet**
+```bash
+# Verifica chiave privata
+node -e "console.log(require('ethers').Wallet.createRandom().privateKey)"
 
-## 📋 Checklist Pre-Produzione
+# Verifica saldo
+npm run check:balance
+```
 
-### ✅ Sicurezza
-- [x] **Testato completamente su testnet** (80% successo)
-- [x] **Test contratti** (73% successo) 
-- [x] **Sicurezza implementata** (ReentrancyGuard + Ownable)
-- [ ] Chiavi private sicure e backup
-- [ ] Limiti di transazione configurati
-- [x] **Monitoraggio errori attivo**
+### 🔧 **Comandi Diagnostici**
+```bash
+# Diagnosi completa
+npm run diagnose
 
-### ✅ Configurazione
-- [x] **Parametri testnet ottimizzati**
-- [x] **Gas price appropriato**
-- [x] **Slippage tolerance configurato**
-- [x] **Timeout transazioni impostato**
-- [x] **Modalità DRY_RUN** per sicurezza
+# Test connessione
+npm run test:connection
 
-### ✅ Monitoraggio
-- [x] **Log level appropriato** (debug per testnet)
-- [x] **Logging esteso** per tutte le operazioni
-- [x] **File log specializzati** per testnet
-- [ ] Rotazione log configurata
+# Verifica contratti
+npm run verify:contracts
 
-### 🎯 **Testnet Ready**
-- [x] **Configurazione .env.testnet** pronta
-- [x] **Script start-testnet.js** ottimizzato
-- [x] **Test suite completo** funzionante
-- [x] **Guida TESTNET_GUIDE.md** completa
-- [x] **Documentazione aggiornata**
-- [ ] Backup log pianificato
-- [ ] Alerting errori configurato
+# Controllo configurazione
+npm run check:config
+```
 
-## 🎯 Caratteristiche Implementate
+## 🎯 Configurazione Finale
 
-### ✅ Smart Contract
-- ✅ Arbitraggio con flash loan Balancer
-- ✅ Sicurezza con ReentrancyGuard
-- ✅ Controllo accessi con Ownable
-- ✅ Funzioni di emergenza
-- ✅ Eventi per logging
+### ✅ **Checklist Pre-Avvio**
+- [ ] Node.js 16+ installato
+- [ ] Dipendenze installate
+- [ ] File .env configurato
+- [ ] Chiave privata inserita
+- [ ] Saldo MATIC sufficiente
+- [ ] Test sistema passati
+- [ ] Analisi costi completata
+- [ ] Configurazione ottimale applicata
 
-### ✅ Bot JavaScript
-- ✅ Monitoraggio continuo prezzi
-- ✅ Rilevamento opportunità automatico
-- ✅ Esecuzione transazioni automatica
-- ✅ Gestione errori completa
-- ✅ Logging dettagliato
-
-### ✅ Infrastruttura
-- ✅ Configurazione flessibile
-- ✅ Test suite completa
-- ✅ Deploy automatico
-- ✅ Setup guidato
-- ✅ Documentazione completa
-
-## 🔗 Risorse Utili
-
-- **Faucet Goerli**: https://goerlifaucet.com/
-- **Etherscan Goerli**: https://goerli.etherscan.io/
-- **Uniswap Docs**: https://docs.uniswap.org/
-- **Balancer Docs**: https://dev.balancer.fi/
-- **Hardhat Docs**: https://hardhat.org/
-
-## ⚠️ Disclaimer
-
-> **ATTENZIONE**: Questo progetto è per scopi educativi. L'arbitraggio crypto comporta rischi finanziari reali. Usa sempre testnet per sviluppo e testa extensively prima di usare fondi reali.
-
-## 🆘 Supporto
-
-Se incontri problemi:
-1. Controlla i log per errori dettagliati
-2. Verifica la configurazione nel file .env
-3. Testa su testnet prima di mainnet
-4. Consulta la documentazione dei provider RPC
+### 🚀 **Comando Avvio Finale**
+```bash
+# Avvio ottimale per Polygon
+npm run start:polygon:optimized
+```
 
 ---
 
-## 🎉 Congratulazioni!
-
-Il tuo bot di arbitraggio crypto è pronto! Ricorda sempre di:
-- 🧪 Testare su testnet
-- 📊 Monitorare i log
-- 🔒 Mantenere sicure le chiavi private
-- 💡 Iniziare con piccoli importi 
+**🎯 Obiettivo**: Setup completo e ottimizzato per Polygon L2 con analisi costi e configurazione profittevole. 
