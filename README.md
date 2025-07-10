@@ -171,3 +171,73 @@ Questo software è fornito "così com'è" senza garanzie. L'arbitraggio crypto c
 ---
 
 **🎯 Obiettivo**: Bot di arbitraggio ottimizzato per Polygon L2 con analisi completa dei costi per garantire profittabilità.
+
+## 🚀 Prossimi Passi - Test Reale
+
+### ✅ **Configurazione Completata**
+- ✅ Progetto pulito e ottimizzato
+- ✅ Configurazione aggiornata per Polygon PoS Amoy
+- ✅ File obsoleti eliminati
+- ✅ Git sincronizzato
+
+### 🧪 **Test della Connessione**
+```bash
+# Test completo sistema
+npm run test:polygon
+
+# Verifica connessione RPC
+node -e "const { ethers } = require('ethers'); const provider = new ethers.providers.JsonRpcProvider('https://rpc-amoy.polygon.technology'); provider.getNetwork().then(network => console.log('Rete:', network.name, 'Chain ID:', network.chainId));"
+```
+
+### 💰 **Ottieni MATIC Testnet**
+1. Vai su: https://faucet.polygon.technology/
+2. Seleziona "Amoy" (non Mumbai)
+3. Incolla l'indirizzo: `0x9a0f6808343230A4593Dd20697e1813ba5a4063E`
+4. Clicca "Submit" per ricevere MATIC
+
+### 🚀 **Avvio Bot**
+```bash
+# Avvio in modalità test (DRY_RUN=true)
+npm run start:polygon
+
+# Avvio con transazioni reali (DRY_RUN=false)
+# Modifica .env: DRY_RUN=false
+npm run start:polygon
+```
+
+### 📊 **Monitoraggio**
+```bash
+# Log in tempo reale
+tail -f logs/polygon-arbitrage.log
+
+# Cerca opportunità
+grep "opportunità" logs/polygon-arbitrage.log
+
+# Cerca errori
+grep "ERROR" logs/polygon-arbitrage.log
+```
+
+### 🔧 **Deploy Contratto (Opzionale)**
+```bash
+# Deploy su Amoy
+npm run deploy:polygon
+
+# Verifica contratto
+npm run verify:contract
+```
+
+### ⚠️ **Note Importanti**
+- **Testnet**: Amoy è la nuova testnet (sostituisce Mumbai)
+- **Gas fees**: Molto basse su Amoy
+- **Sicurezza**: Mantieni DRY_RUN=true inizialmente
+- **Monitoraggio**: Controlla sempre i log
+
+### 🎯 **Obiettivo Test**
+- Verificare connessione blockchain
+- Testare monitoraggio prezzi
+- Validare logica arbitraggio
+- Confermare profittabilità su L2
+
+---
+
+**🚀 Il bot è pronto per il test reale su Polygon PoS Amoy!**

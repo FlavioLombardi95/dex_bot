@@ -2,6 +2,35 @@
 
 Tutte le modifiche notevoli al progetto saranno documentate in questo file.
 
+## [2.2.0] - 2025-01-XX - 🧹 Pulizia Progetto & Prossimi Passi
+
+### 🗑️ **Pulizia Completata**
+- **Eliminati file obsoleti**: 8 file rimossi
+- **Script Goerli obsoleti**: Tutti eliminati
+- **Configurazioni Mumbai**: Sostituite con Amoy
+- **File temporanei**: Rimossi
+
+### 🔧 **File Eliminati**
+- `DEX BOT TEST` - File temporaneo
+- `polygon-testnet.env` - Configurazione Mumbai obsoleta
+- `scripts/test-arbitraggio-*.js` - Script Goerli obsoleti (4 file)
+- `scripts/test-autonomo.js` - Script Goerli obsoleto
+- `scripts/test-prezzi-reali.js` - Script Goerli obsoleto
+
+### 📚 **Documentazione Aggiornata**
+- **README.md**: Aggiunta sezione "Prossimi Passi"
+- **Guide aggiornate**: Tutte per Amoy
+- **Istruzioni test**: Complete per test reale
+
+### 🎯 **Prossimi Passi Definiti**
+- Test connessione blockchain
+- Ottenere MATIC da faucet Amoy
+- Avvio bot in modalità test
+- Monitoraggio e validazione
+- Deploy contratto (opzionale)
+
+---
+
 ## [2.1.0] - 2025-01-XX - 🔄 Polygon PoS Amoy Update
 
 ### 🎯 **Aggiornamento**
