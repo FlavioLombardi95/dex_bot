@@ -5,9 +5,11 @@
   "main": "bot/index.js",
   "scripts": {
     "start": "node start.js",
+    "start:testnet": "node start-testnet.js",
     "bot": "node bot/index.js",
     "deploy": "npx hardhat run scripts/deploy.js --network goerli",
     "test": "npx hardhat test",
+    "test:setup": "node scripts/test-setup.js",
     "compile": "npx hardhat compile",
     "setup": "node scripts/setup.js"
   },
@@ -22,18 +24,22 @@
   "author": "Crypto Arbitrage Bot",
   "license": "MIT",
   "dependencies": {
-    "@ethersproject/providers": "^5.7.2",
+    "@balancer-labs/v2-interfaces": "^0.4.0",
     "@ethersproject/contracts": "^5.7.0",
-    "ethers": "^5.7.2",
-    "dotenv": "^16.0.3",
+    "@ethersproject/providers": "^5.7.2",
+    "@openzeppelin/contracts": "^5.3.0",
+    "@uniswap/v2-core": "^1.0.1",
+    "@uniswap/v2-periphery": "^1.1.0-beta.0",
     "axios": "^1.4.0",
-    "winston": "^3.8.2",
-    "node-cron": "^3.0.2"
+    "dotenv": "^16.0.3",
+    "ethers": "^5.7.2",
+    "node-cron": "^3.0.2",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
-    "hardhat": "^2.14.0",
     "chai": "^4.3.7",
+    "hardhat": "^2.14.0",
     "mocha": "^10.2.0"
   }
-} 
+}

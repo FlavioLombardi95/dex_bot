@@ -2,13 +2,12 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@balancer-labs/v2-interfaces/contracts/vault/IVault.sol";
 import "@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol";
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol";
 import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract Arbitrage is IFlashLoanRecipient, Ownable, ReentrancyGuard {
     // Balancer Vault per flash loan
@@ -36,7 +35,7 @@ contract Arbitrage is IFlashLoanRecipient, Ownable, ReentrancyGuard {
     constructor(
         address _uniswapRouter,
         address _sushiswapRouter
-    ) {
+    ) Ownable(msg.sender) {
         uniswapRouter = IUniswapV2Router02(_uniswapRouter);
         sushiswapRouter = IUniswapV2Router02(_sushiswapRouter);
     }
