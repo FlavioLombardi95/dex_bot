@@ -10,6 +10,7 @@
     "deploy": "npx hardhat run scripts/deploy.js --network goerli",
     "test": "npx hardhat test",
     "test:setup": "node scripts/test-setup.js",
+    "test:autonomo": "node scripts/test-autonomo.js",
     "compile": "npx hardhat compile",
     "setup": "node scripts/setup.js"
   },
