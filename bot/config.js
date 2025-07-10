@@ -87,10 +87,25 @@ const config = {
 
 // Configurazioni specifiche per rete
 const networkConfigs = {
-    // Mumbai Testnet (Polygon)
+    // Mumbai Testnet (Polygon) - DEPRECATO
     mumbai: {
         rpcUrl: 'https://rpc-mumbai.maticvigil.com',
         chainId: 80001,
+        balancerVault: '0xBA12222222228d8Ba445958a75a0704d566BF2C8',
+        uniswapRouter: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff',
+        sushiswapRouter: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+        tokens: {
+            WMATIC: '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
+            USDC: '0xe6b8a5CF854791412c1f6EFC7CAf629f5Df1c747',
+            USDT: '0xA02f6adc7926efeBBd59Fd43A84f1E0C1232Fa2D',
+            DAI: '0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F'
+        }
+    },
+    
+    // Polygon PoS Amoy Testnet (NUOVO)
+    amoy: {
+        rpcUrl: 'https://rpc-amoy.polygon.technology',
+        chainId: 80002,
         balancerVault: '0xBA12222222228d8Ba445958a75a0704d566BF2C8',
         uniswapRouter: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff',
         sushiswapRouter: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',

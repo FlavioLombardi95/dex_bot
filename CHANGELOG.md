@@ -2,6 +2,32 @@
 
 Tutte le modifiche notevoli al progetto saranno documentate in questo file.
 
+## [2.1.0] - 2025-01-XX - 🔄 Polygon PoS Amoy Update
+
+### 🎯 **Aggiornamento**
+- **Migrazione da Mumbai ad Amoy**: Aggiornamento alla nuova testnet Polygon PoS Amoy
+- **Configurazione RPC**: Aggiornato endpoint da Mumbai ad Amoy
+- **Chain ID**: Aggiornato da 80001 (Mumbai) a 80002 (Amoy)
+- **Documentazione**: Aggiornata per riflettere la nuova testnet
+
+### 🔧 **Modifiche Tecniche**
+- **RPC URL**: `https://rpc-amoy.polygon.technology`
+- **Chain ID**: 80002 (Amoy)
+- **Network**: `amoy`
+- **Configurazione**: Aggiunta supporto completo per Amoy
+
+### 📁 **Nuovi File**
+- `polygon-amoy.env` - Configurazione specifica Amoy
+- Aggiornamento `bot/config.js` - Supporto Amoy
+- Aggiornamento `hardhat.config.js` - Configurazione Amoy
+
+### 📚 **Documentazione**
+- Aggiornamento guide per Amoy
+- Deprecazione riferimenti Mumbai
+- Aggiornamento configurazioni
+
+---
+
 ## [2.0.0] - 2025-01-XX - 🚀 Polygon L2 Optimization & Cost Analysis
 
 ### 🎯 **Aggiunto**

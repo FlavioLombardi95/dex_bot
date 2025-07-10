@@ -56,11 +56,21 @@ module.exports = {
       gasPrice: 20000000000
     },
     
-    // Polygon Mumbai testnet (L2)
+    // Polygon Mumbai testnet (L2) - DEPRECATO
     mumbai: {
       url: 'https://rpc-mumbai.maticvigil.com',
       accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
       chainId: 80001,
+      gas: 8000000, // Gas limit più alto per L2
+      gasPrice: 30000000000, // 30 gwei per Polygon
+      timeout: 60000 // Timeout più lungo per L2
+    },
+    
+    // Polygon PoS Amoy testnet (L2) - NUOVO
+    amoy: {
+      url: 'https://rpc-amoy.polygon.technology',
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
+      chainId: 80002,
       gas: 8000000, // Gas limit più alto per L2
       gasPrice: 30000000000, // 30 gwei per Polygon
       timeout: 60000 // Timeout più lungo per L2
