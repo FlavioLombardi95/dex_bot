@@ -1,0 +1,39 @@
+{
+  "name": "crypto-arbitrage-bot",
+  "version": "1.0.0",
+  "description": "Bot decentralizzato per arbitraggio crypto tra DEX con flash loan",
+  "main": "bot/index.js",
+  "scripts": {
+    "start": "node start.js",
+    "bot": "node bot/index.js",
+    "deploy": "npx hardhat run scripts/deploy.js --network goerli",
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "setup": "node scripts/setup.js"
+  },
+  "keywords": [
+    "crypto",
+    "arbitrage",
+    "dex",
+    "flash-loan",
+    "ethereum",
+    "solidity"
+  ],
+  "author": "Crypto Arbitrage Bot",
+  "license": "MIT",
+  "dependencies": {
+    "@ethersproject/providers": "^5.7.2",
+    "@ethersproject/contracts": "^5.7.0",
+    "ethers": "^5.7.2",
+    "dotenv": "^16.0.3",
+    "axios": "^1.4.0",
+    "winston": "^3.8.2",
+    "node-cron": "^3.0.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.14.0",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  }
+} 
