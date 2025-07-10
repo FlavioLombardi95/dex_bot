@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Setup script per Polygon Mumbai Testnet
+ * Setup script per Polygon PoS Amoy Testnet
  * Configurazione automatica per Layer 2
  */
 
@@ -31,7 +31,7 @@ class PolygonSetup {
     }
     
     async runSetup() {
-        logger.info('🚀 === SETUP POLYGON MUMBAI ===');
+        logger.info('🚀 === SETUP POLYGON POS AMOY ===');
         
         try {
             await this.checkPrerequisites();
@@ -102,10 +102,10 @@ class PolygonSetup {
         
         // Crea .env se non esiste
         if (!fs.existsSync('.env')) {
-            const envContent = `# Configurazione Polygon Mumbai Testnet
-NETWORK=mumbai
-RPC_URL=https://rpc-mumbai.maticvigil.com
-CHAIN_ID=80001
+            const envContent = `# Configurazione Polygon PoS Amoy Testnet
+NETWORK=amoy
+RPC_URL=https://rpc-amoy.polygon.technology
+CHAIN_ID=80002
 
 # Wallet (inserisci la tua chiave privata)
 PRIVATE_KEY=your_private_key_here
@@ -116,11 +116,11 @@ ARBITRAGE_CONTRACT_ADDRESS=
 # Balancer Vault (Polygon)
 BALANCER_VAULT_ADDRESS=0xBA12222222228d8Ba445958a75a0704d566BF2C8
 
-# Router DEX (Polygon Mumbai)
+# Router DEX (Polygon Amoy)
 UNISWAP_ROUTER=0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff
 SUSHISWAP_ROUTER=0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506
 
-# Token Mumbai Testnet
+# Token Amoy Testnet
 WMATIC_ADDRESS=0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889
 USDC_ADDRESS=0xe6b8a5CF854791412c1f6EFC7CAf629f5Df1c747
 USDT_ADDRESS=0xA02f6adc7926efeBBd59Fd43A84f1E0C1232Fa2D
@@ -181,11 +181,11 @@ LOG_LEVEL=debug
     async createDocumentation() {
         logger.info('📚 Creazione documentazione...');
         
-        const polygonGuide = `# 🚀 GUIDA POLYGON MUMBAI
+        const polygonGuide = `# 🚀 GUIDA POLYGON POS AMOY
 
 ## ✅ Setup Completato!
 
-Il bot è stato configurato per Polygon Mumbai testnet.
+Il bot è stato configurato per Polygon PoS Amoy testnet.
 
 ## 🎯 Prossimi Passi
 
@@ -211,9 +211,9 @@ npm run start:polygon
 ## 🔗 Risorse Utili
 
 - **Faucet MATIC**: https://faucet.polygon.technology/
-- **Polygon Mumbai Explorer**: https://mumbai.polygonscan.com/
-- **Uniswap Mumbai**: https://app.uniswap.org/
-- **SushiSwap Mumbai**: https://app.sushi.com/
+- **Polygon Amoy Explorer**: https://amoy.polygonscan.com/
+- **Uniswap Amoy**: https://app.uniswap.org/
+- **SushiSwap Amoy**: https://app.sushi.com/
 
 ## ⚠️ Note Importanti
 
@@ -237,7 +237,7 @@ Il bot è ottimizzato per Layer 2 con:
     
     printSuccess() {
         logger.info('🎉 === SETUP COMPLETATO CON SUCCESSO ===');
-        logger.info('✅ Tutti i componenti configurati per Polygon Mumbai');
+        logger.info('✅ Tutti i componenti configurati per Polygon PoS Amoy');
         logger.info('📝 Leggi POLYGON_GUIDE.md per i prossimi passi');
         logger.info('🧪 Esegui: npm run test:polygon');
         logger.info('🚀 Avvia: npm run start:polygon');

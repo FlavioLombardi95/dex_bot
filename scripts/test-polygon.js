@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Test script per Polygon Mumbai Testnet
+ * Test script per Polygon PoS Amoy Testnet
  * Verifica tutte le funzionalità del bot su Layer 2
  */
 
@@ -38,11 +38,11 @@ class PolygonTestSuite {
     }
     
     async runTests() {
-        logger.info('🧪 === TEST SUITE POLYGON MUMBAI ===');
+        logger.info('🧪 === TEST SUITE POLYGON POS AMOY ===');
         
         try {
             // Carica configurazione Polygon
-            loadNetworkConfig('mumbai');
+            loadNetworkConfig('amoy');
             logger.info('✅ Configurazione Polygon caricata');
             
             // Esegui tutti i test
@@ -83,8 +83,8 @@ class PolygonTestSuite {
             const provider = new ethers.providers.JsonRpcProvider(config.network.rpcUrl);
             const network = await provider.getNetwork();
             
-            if (network.chainId === 80001) {
-                logger.info('✅ Connessione Polygon Mumbai OK');
+            if (network.chainId === 80002) {
+                logger.info('✅ Connessione Polygon PoS Amoy OK');
                 this.results.passed++;
             } else {
                 throw new Error(`Chain ID errato: ${network.chainId}, atteso: 80001`);
@@ -228,7 +228,7 @@ class PolygonTestSuite {
         logger.info(`🎯 Tasso di successo: ${successRate}%`);
         
         if (this.results.failed === 0) {
-            logger.info('🎉 TUTTI I TEST PASSATI! Pronto per Polygon Mumbai');
+            logger.info('🎉 TUTTI I TEST PASSATI! Pronto per Polygon PoS Amoy');
         } else {
             logger.warn('⚠️ Alcuni test falliti. Controlla la configurazione.');
         }
