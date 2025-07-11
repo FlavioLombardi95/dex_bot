@@ -1,300 +1,421 @@
-# 🚀 Guida Setup Completa - Polygon L2
+# 🛠️ Setup Guide - DEX Arbitrage Bot Multi-Network
 
-Guida dettagliata per configurare e avviare il bot di arbitraggio crypto su **Polygon Layer 2** con analisi completa dei costi.
+## 🚀 Panoramica Setup
 
-## 📋 Prerequisiti
+Guida completa per configurare il DEX Arbitrage Bot su multiple blockchain testnet. Il progetto è organizzato in configurazioni separate per massimizzare l'efficienza e la chiarezza.
 
-### 💻 **Sistema**
-- **OS**: Windows 10+, macOS 10.15+, Ubuntu 18.04+
-- **Node.js**: Versione 16.0.0 o superiore
-- **npm**: Versione 8.0.0 o superiore
-- **Git**: Versione 2.30.0 o superiore
+## 📁 Struttura Progetto
 
-### 🔧 **Verifica Prerequisiti**
-```bash
-# Verifica Node.js
-node --version  # Deve essere >= 16.0.0
-
-# Verifica npm
-npm --version   # Deve essere >= 8.0.0
-
-# Verifica Git
-git --version   # Deve essere >= 2.30.0
+```
+DEX Bot/
+├── 📁 BNB-Testnet/        # Configurazione BSC Testnet (Raccomandato per iniziare)
+├── 📁 POL-Amoy/           # Configurazione Polygon PoS Amoy (Avanzato)
+├── 📋 README.md           # Guida generale 
+├── ⚙️ package.json        # Configurazione multi-network
+├── 📝 SETUP.md            # Questa guida
+└── 📜 CHANGELOG.md        # Cronologia modifiche
 ```
 
-## 🎯 Installazione
+## 🎯 Quale Configurazione Scegliere?
 
-### 1️⃣ **Clone Repository**
+### 🟡 BNB-Testnet (Raccomandato per Iniziare)
+- ✅ **DEX funzionali**: PancakeSwap e BakerySwap attivi
+- ✅ **Liquidità reale**: Coppie token esistenti e trading
+- ✅ **Arbitraggio immediato**: Opportunità reali su testnet
+- ✅ **Costi bassi**: ~0.001 BNB per transazione
+- 🎯 **Ideale per**: Prime prove, test realistici, validazione logica
+
+### 💜 POL-Amoy (Per Testing Avanzato L2)
+- ✅ **Costi ultra-bassi**: Gas 1000x più economico
+- ✅ **Flash loans**: Integrazione Balancer per capital efficiency
+- ✅ **Layer 2**: Tecnologia Polygon per alta velocità
+- ⚠️ **DEX limitati**: Liquidità testnet limitata
+- 🎯 **Ideale per**: Analisi costi L2, flash loan testing, ricerca
+
+## 🚀 Setup Rapido
+
+### Opzione A: BNB-Testnet (Raccomandato)
+
 ```bash
-# Clona il repository
+# 1. Vai nella configurazione BNB
+cd BNB-Testnet
+
+# 2. Installa dipendenze
+npm install
+
+# 3. Configura ambiente
+cp bsc-testnet.env .env
+nano .env  # Inserisci PRIVATE_KEY e WALLET_ADDRESS
+
+# 4. Ottieni BNB testnet
+# Vai su: https://testnet.binance.org/faucet-smart
+
+# 5. Test setup
+npm run setup:bsc
+
+# 6. Deploy contratto
+npm run deploy:bsc
+
+# 7. Avvia bot
+npm run start:bsc
+```
+
+### Opzione B: POL-Amoy (Avanzato)
+
+```bash
+# 1. Vai nella configurazione Polygon
+cd POL-Amoy
+
+# 2. Installa dipendenze
+npm install
+
+# 3. Configura ambiente
+cp polygon-amoy.env .env
+nano .env  # Inserisci PRIVATE_KEY e WALLET_ADDRESS
+
+# 4. Ottieni POL testnet
+# Vai su: https://faucet.polygon.technology/
+
+# 5. Test setup
+npm run setup:polygon
+
+# 6. Deploy contratto
+npm run deploy:polygon
+
+# 7. Avvia bot
+npm run start:polygon
+```
+
+## 🔧 Setup Dettagliato
+
+### 1. Prerequisiti Sistema
+
+#### Software Richiesto
+```bash
+# Node.js v16+
+node --version  # >= 16.0.0
+
+# npm v8+
+npm --version   # >= 8.0.0
+
+# Git
+git --version
+```
+
+#### Installazione Node.js (se necessario)
+```bash
+# macOS (con Homebrew)
+brew install node
+
+# Ubuntu/Debian
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Windows
+# Scarica da: https://nodejs.org/
+```
+
+### 2. Clone Repository
+
+```bash
+# Clone del progetto
 git clone https://github.com/FlavioLombardi95/dex_bot.git
-cd dex_bot
+cd "DEX Bot"
 
 # Verifica struttura
 ls -la
+# Dovresti vedere: BNB-Testnet/ POL-Amoy/ README.md package.json
 ```
 
-### 2️⃣ **Installazione Dipendenze**
+### 3. Configurazione Wallet
+
+#### Crea Wallet Testnet (Raccomandato)
 ```bash
-# Installa dipendenze
-npm install
+# Genera nuova chiave privata per testnet
+node -e "console.log('Private Key:', require('crypto').randomBytes(32).toString('hex'))"
 
-# Verifica installazione
-npm list --depth=0
+# Ricava indirizzo da chiave privata
+node -e "const ethers = require('ethers'); const wallet = new ethers.Wallet('0x' + process.argv[1]); console.log('Address:', wallet.address)" YOUR_PRIVATE_KEY
 ```
 
-### 3️⃣ **Configurazione Ambiente**
+#### O Usa Wallet Esistente
+- Esporta chiave privata da MetaMask
+- ⚠️ **IMPORTANTE**: Usa solo wallet dedicato per testnet
+- ⚠️ **MAI** condividere la chiave privata
 
-#### 🔑 **Setup Wallet**
+### 4. Configurazione MetaMask
+
+#### BNB-Testnet
+```
+Network Name: BSC Testnet
+RPC URL: https://data-seed-prebsc-1-s1.binance.org:8545
+Chain ID: 97
+Symbol: BNB
+Explorer: https://testnet.bscscan.com
+```
+
+#### POL-Amoy
+```
+Network Name: Polygon Amoy
+RPC URL: https://rpc-amoy.polygon.technology
+Chain ID: 80002
+Symbol: POL
+Explorer: https://www.oklink.com/amoy
+```
+
+### 5. Ottenere Token Testnet
+
+#### BNB Testnet
+1. Vai su: https://testnet.binance.org/faucet-smart
+2. Inserisci il tuo indirizzo wallet
+3. Completa verifica (se richiesta)
+4. Ricevi 0.5-1 BNB testnet
+
+#### POL Testnet
+1. Vai su: https://faucet.polygon.technology/
+2. Seleziona "Amoy"
+3. Inserisci il tuo indirizzo wallet
+4. Ricevi 1-10 POL testnet
+
+### 6. Configurazione Ambiente
+
+#### File .env Esempio (BNB-Testnet)
 ```bash
-# Crea file .env
-cp polygon-mainnet.env .env
+# Network Configuration
+NETWORK=bscTestnet
+CHAIN_ID=97
+RPC_URL=https://data-seed-prebsc-1-s1.binance.org:8545
 
-# Modifica configurazione
-nano .env
-```
-
-#### 📝 **Configurazione .env**
-```env
 # Wallet Configuration
-PRIVATE_KEY=your_polygon_private_key_here
-
-# Polygon RPC Configuration
-RPC_URL=https://polygon-rpc.com
-CHAIN_ID=137
+PRIVATE_KEY=la_tua_chiave_privata_senza_0x
+WALLET_ADDRESS=il_tuo_indirizzo_wallet
 
 # Bot Configuration
-MIN_PROFIT_THRESHOLD=0.002
-MAX_SLIPPAGE=0.02
 DRY_RUN=true
-LOG_LEVEL=info
-
-# DEX Configuration
-UNISWAP_ROUTER=0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff
-SUSHISWAP_ROUTER=0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506
-
-# Flash Loan Configuration
-BALANCER_VAULT=0xBA12222222228d8Ba445958a75a0704d566BF2C8
-FLASH_LOAN_FEE=0.0009
-
-# Gas Configuration (Polygon L2)
-GAS_LIMIT=500000
-GAS_PRICE=30000000000  # 30 gwei
+MIN_PROFIT_PERCENTAGE=0.5
+MAX_SLIPPAGE=1.0
+GAS_MULTIPLIER=1.2
 ```
 
-## 🧪 Test e Validazione
+#### File .env Esempio (POL-Amoy)
+```bash
+# Network Configuration
+NETWORK=amoy
+CHAIN_ID=80002
+RPC_URL=https://rpc-amoy.polygon.technology
 
-### 🔍 **Test Sistema Base**
+# Wallet Configuration
+PRIVATE_KEY=la_tua_chiave_privata_senza_0x
+WALLET_ADDRESS=il_tuo_indirizzo_wallet
+
+# Bot Configuration
+DRY_RUN=true
+MIN_PROFIT_PERCENTAGE=0.2
+MAX_SLIPPAGE=2.0
+GAS_MULTIPLIER=1.5
+```
+
+## 🧪 Testing e Validazione
+
+### Test Base
 ```bash
 # Test configurazione
-npm run test:polygon
+npm run test:config
 
+# Test connessione RPC
+npm run test:connection
+
+# Test saldi wallet
+npm run setup:bsc  # o setup:polygon
+```
+
+### Test Avanzati
+```bash
+# Test simulazione arbitraggio
+npm run test:simulation
+
+# Test con dati realistici
+npm run test:realistic
+
+# Analisi costi completa
+npm run analyze:costs
+```
+
+### Validazione Deploy
+```bash
+# Compila contratti
+npm run compile
+
+# Deploy su testnet
+npm run deploy:bsc  # o deploy:polygon
+
+# Verifica contratto (opzionale)
+npm run verify:bsc  # o verify:polygon
+```
+
+## 📊 Monitoraggio e Debugging
+
+### Comandi Monitoring
+```bash
+# Log in tempo reale
+npm run logs
+
+# Log specifici
+tail -f bsc-arbitrage.log      # BNB-Testnet
+tail -f polygon-arbitrage.log  # POL-Amoy
+
+# Statistiche profitti
+npm run profit:stats
+```
+
+### Debug Comuni
+```bash
 # Verifica connessione
 npm run test:connection
 
-# Test contratti
-npm run test:contracts
+# Controlla configurazione
+npm run config:validate
+
+# Reset cache
+npm run clean
 ```
 
-### 📊 **Analisi Costi**
+## 🔐 Sicurezza e Best Practices
+
+### Gestione Chiavi Private
+- ✅ Usa wallet dedicato per testnet
+- ✅ Non committare mai file .env
+- ✅ Testa sempre con DRY_RUN=true prima
+- ✅ Monitora transazioni costantemente
+- ❌ Non condividere mai chiavi private
+- ❌ Non usare wallet principali per testing
+
+### File .gitignore
 ```bash
-# Analisi costi Polygon
-npm run polygon-costs
+# Verifica che .env sia ignorato
+cat .gitignore | grep .env
 
-# Confronto Ethereum vs Polygon
-npm run costs
-
-# Analisi profittabilità
-npm run profitability
+# Se non presente, aggiungi:
+echo "*.env" >> .gitignore
+echo ".env*" >> .gitignore
 ```
 
-### 🔍 **Analisi Opportunità**
+## 🆘 Risoluzione Problemi
+
+### Problemi Comuni
+
+#### "Network Error" / "RPC Error"
 ```bash
-# Analisi opportunità storiche
-npm run analyze
+# Verifica RPC endpoint
+curl -X POST -H "Content-Type: application/json" \
+  --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}' \
+  https://data-seed-prebsc-1-s1.binance.org:8545
 
-# Monitoraggio tempo reale
-npm run real-data:monitor
-
-# Analisi dati salvati
-npm run real-data:analyze
+# Prova RPC alternativi
+# BSC: https://data-seed-prebsc-2-s1.binance.org:8545
+# Polygon: https://rpc-amoy.polygon.technology
 ```
 
-## 🚀 Deploy e Avvio
-
-### 1️⃣ **Deploy Smart Contract**
+#### "Insufficient Balance"
 ```bash
-# Deploy su Polygon
-npm run deploy:polygon
+# Verifica saldi
+npm run setup:bsc  # mostra saldi
 
-# Verifica deploy
-npm run verify:contract
+# Usa faucet per ottenere token
+# BSC: https://testnet.binance.org/faucet-smart
+# Polygon: https://faucet.polygon.technology/
 ```
 
-### 2️⃣ **Configurazione Finale**
+#### "Contract Deployment Failed"
 ```bash
-# Mostra configurazione ottimale
-npm run config
+# Verifica gas price
+npm run analyze:costs
 
-# Setup Polygon
-npm run setup:polygon
+# Aumenta gas limit nel file config
+# gas: { limit: 5000000 }
+
+# Riprova deploy
+npm run deploy:bsc
 ```
 
-### 3️⃣ **Avvio Bot**
+#### "No Arbitrage Opportunities"
 ```bash
-# Avvio in modalità test
-npm run start:polygon
-
-# Avvio con logging dettagliato
-LOG_LEVEL=debug npm run start:polygon
-
-# Avvio in background
-nohup npm run start:polygon > bot.log 2>&1 &
-```
-
-## 📊 Monitoraggio e Debug
-
-### 📋 **Logging**
-```bash
-# Monitora log in tempo reale
-tail -f logs/polygon-arbitrage.log
-
-# Cerca errori
-grep "ERROR" logs/polygon-arbitrage.log
-
-# Cerca opportunità
-grep "opportunità" logs/polygon-arbitrage.log
-```
-
-### 🔧 **Debugging**
-```bash
-# Debug completo
-LOG_LEVEL=debug npm run start:polygon
-
-# Test connessione RPC
-npm run test:rpc
-
-# Verifica configurazione
-node -e "console.log(require('./bot/config.js'))"
-```
-
-## 💰 Configurazione Ottimale
-
-### 🎯 **Parametri Raccomandati**
-- **Soglia profitto minimo**: 0.2%
-- **Trade size minimo**: $10,000
-- **Gas price**: 30 gwei (Polygon)
-- **Slippage massimo**: 2%
-- **Frequenza controllo**: 1 secondo
-
-### 📈 **Analisi Costi Polygon**
-| Trade Size | Spread Minimo | Profitto Netto |
-|------------|---------------|----------------|
-| $1,000     | 3.16%        | -$31.60        |
-| $5,000     | 0.70%        | -$35.00        |
-| $10,000    | 0.40%        | $5.00          |
-| $25,000    | 0.21%        | $27.50         |
-| $50,000    | 0.15%        | $62.50         |
-| $100,000   | 0.12%        | $107.50        |
-
-## 🔒 Sicurezza
-
-### 🛡️ **Best Practices**
-- **Usa sempre testnet** prima di mainnet
-- **Mantieni DRY_RUN=true** inizialmente
-- **Monitora i log** continuamente
-- **Testa con piccoli importi**
-- **Aggiorna regolarmente** le dipendenze
-
-### ⚠️ **Controlli Sicurezza**
-```bash
-# Verifica configurazione sicurezza
-npm run security:check
-
-# Test funzioni di emergenza
-npm run test:emergency
-
-# Verifica accessi
-npm run verify:access
-```
-
-## 📚 Risorse Utili
-
-### 🔗 **Link Importanti**
-- [Polygon Faucet](https://faucet.polygon.technology/)
-- [Polygon Explorer](https://polygonscan.com/)
-- [Polygon RPC](https://polygon-rpc.com/)
-- [Uniswap Polygon](https://app.uniswap.org/)
-- [SushiSwap Polygon](https://app.sushi.com/)
-
-### 📖 **Documentazione**
-- [README.md](README.md) - Guida principale
-- [POLYGON_GUIDE.md](POLYGON_GUIDE.md) - Guida Polygon
-- [TESTNET_GUIDE.md](TESTNET_GUIDE.md) - Guida testnet
-- [CHANGELOG.md](CHANGELOG.md) - Changelog completo
-
-## 🆘 Troubleshooting
-
-### ❌ **Problemi Comuni**
-
-#### **Errore Connessione RPC**
-```bash
-# Prova endpoint alternativi
-RPC_URL=https://rpc-mainnet.maticvigil.com npm run start:polygon
-RPC_URL=https://polygon-rpc.com npm run start:polygon
-```
-
-#### **Errore Gas**
-```bash
-# Aumenta gas limit
-GAS_LIMIT=1000000 npm run start:polygon
-
-# Aumenta gas price
-GAS_PRICE=50000000000 npm run start:polygon
-```
-
-#### **Errore Wallet**
-```bash
-# Verifica chiave privata
-node -e "console.log(require('ethers').Wallet.createRandom().privateKey)"
-
-# Verifica saldo
-npm run check:balance
-```
-
-### 🔧 **Comandi Diagnostici**
-```bash
-# Diagnosi completa
-npm run diagnose
-
-# Test connessione
+# Normale in mercati stabili
+# Verifica che DEX siano sincronizzati
 npm run test:connection
 
-# Verifica contratti
-npm run verify:contracts
-
-# Controllo configurazione
-npm run check:config
+# Controlla prezzi manualmente
+npm run analyze:real
 ```
 
-## 🎯 Configurazione Finale
-
-### ✅ **Checklist Pre-Avvio**
-- [ ] Node.js 16+ installato
-- [ ] Dipendenze installate
-- [ ] File .env configurato
-- [ ] Chiave privata inserita
-- [ ] Saldo MATIC sufficiente
-- [ ] Test sistema passati
-- [ ] Analisi costi completata
-- [ ] Configurazione ottimale applicata
-
-### 🚀 **Comando Avvio Finale**
+### Log e Debug
 ```bash
-# Avvio ottimale per Polygon
-npm run start:polygon:optimized
+# Debug completo
+DEBUG=true npm run start:bsc
+
+# Log dettagliati
+LOG_LEVEL=debug npm run start:bsc
+
+# Analisi errori
+grep "ERROR" *.log
 ```
+
+## 📈 Ottimizzazione Performance
+
+### Configurazione Gas
+```bash
+# BNB-Testnet
+GAS_PRICE_GWEI=10
+GAS_MULTIPLIER=1.2
+
+# POL-Amoy
+GAS_PRICE_GWEI=30
+GAS_MULTIPLIER=1.5
+```
+
+### Parametri Trading
+```bash
+# Conservativo
+MIN_PROFIT_PERCENTAGE=1.0
+MAX_SLIPPAGE=0.5
+
+# Aggressivo
+MIN_PROFIT_PERCENTAGE=0.3
+MAX_SLIPPAGE=2.0
+```
+
+## 🎯 Prossimi Passi
+
+### Dopo Setup Iniziale
+1. ✅ Testa con DRY_RUN=true
+2. ✅ Monitora log per 30-60 minuti
+3. ✅ Verifica opportunità rilevate
+4. ✅ Ottimizza parametri se necessario
+5. ✅ Gradualmente riduci DRY_RUN per test reali
+
+### Progressione Raccomandata
+1. **Inizia con BNB-Testnet** per familiarizzare
+2. **Testa POL-Amoy** per analisi Layer 2
+3. **Confronta performance** tra le due reti
+4. **Ottimizza configurazioni** basandoti sui risultati
+5. **Considera mainnet** solo dopo testing estensivo
 
 ---
 
-**🎯 Obiettivo**: Setup completo e ottimizzato per Polygon L2 con analisi costi e configurazione profittevole. 
+## 🔗 Collegamenti Utili
+
+### Faucet
+- [BSC Testnet Faucet](https://testnet.binance.org/faucet-smart)
+- [Polygon Faucet](https://faucet.polygon.technology/)
+
+### Explorer
+- [BSC Testnet Explorer](https://testnet.bscscan.com)
+- [Polygon Amoy Explorer](https://www.oklink.com/amoy)
+
+### Documentazione
+- [BSC Docs](https://docs.bnbchain.org/)
+- [Polygon Docs](https://docs.polygon.technology/)
+
+---
+
+**🚀 Setup completato! Ora sei pronto per testare il bot di arbitraggio DEX!** 

@@ -1,64 +1,57 @@
 {
-  "name": "crypto-arbitrage-bot",
+  "name": "dex-arbitrage-bot-multi-network",
   "version": "2.0.0",
-  "description": "Bot decentralizzato per arbitraggio crypto tra DEX con flash loan - Supporto Layer 2 (Polygon)",
-  "main": "bot/index.js",
+  "description": "Bot di arbitraggio DEX multi-network con supporto per BSC Testnet e Polygon PoS Amoy",
+  "main": "README.md",
   "scripts": {
-    "start": "node start.js",
-    "start:testnet": "node start-testnet.js",
-    "start:polygon": "node start-polygon.js",
-    "start:polygon:testnet": "node start-polygon.js",
-    "bot": "node bot/index.js",
-    "deploy": "npx hardhat run scripts/deploy.js --network goerli",
-    "deploy:polygon": "npx hardhat run scripts/deploy.js --network amoy",
-    "deploy:polygon:mainnet": "npx hardhat run scripts/deploy.js --network polygon",
-    "test": "npx hardhat test",
-    "test:setup": "node scripts/test-setup.js",
-    "test:autonomo": "node scripts/test-autonomo.js",
-    "test:polygon": "node scripts/test-polygon.js",
-    "test:simulation": "node scripts/test-simulation.js",
-    "test:realistic": "node scripts/test-realistic-simulation.js",
-    "profitability": "node scripts/profitability-analysis.js",
-    "costs": "node scripts/complete-cost-analysis.js",
-    "polygon-costs": "node scripts/polygon-cost-analysis.js",
-    "analyze": "node scripts/arbitrage-opportunity-analyzer.js",
-    "real-data:realtime": "node scripts/real-data-analyzer.js realtime",
-    "real-data:monitor": "node scripts/real-data-analyzer.js monitor",
-    "real-data:analyze": "node scripts/real-data-analyzer.js analyze",
-    "config": "node scripts/final-configuration.js",
-    "compile": "npx hardhat compile",
-    "setup": "node scripts/setup.js",
-    "setup:polygon": "node scripts/setup-polygon.js"
+    "setup": "echo 'Scegli una configurazione: cd BNB-Testnet || cd POL-Amoy'",
+    "setup:bnb": "cd BNB-Testnet && npm install && npm run setup:bsc",
+    "setup:pol": "cd POL-Amoy && npm install && npm run setup:polygon",
+    "start:bnb": "cd BNB-Testnet && npm run start:bsc",
+    "start:pol": "cd POL-Amoy && npm run start:polygon",
+    "test:bnb": "cd BNB-Testnet && npm run test:bsc",
+    "test:pol": "cd POL-Amoy && npm run test:polygon",
+    "deploy:bnb": "cd BNB-Testnet && npm run deploy:bsc", 
+    "deploy:pol": "cd POL-Amoy && npm run deploy:polygon",
+    "logs:bnb": "cd BNB-Testnet && npm run logs",
+    "logs:pol": "cd POL-Amoy && npm run logs",
+    "install:all": "npm run install:bnb && npm run install:pol",
+    "install:bnb": "cd BNB-Testnet && npm install",
+    "install:pol": "cd POL-Amoy && npm install",
+    "clean": "rm -rf */node_modules */cache */artifacts */logs */reports",
+    "status": "echo '📊 DEX Bot Multi-Network Status:' && echo '🟡 BNB-Testnet: Pronto per trading' && echo '💜 POL-Amoy: Pronto per analisi L2'"
   },
   "keywords": [
-    "crypto",
-    "arbitrage",
     "dex",
-    "flash-loan",
-    "ethereum",
+    "arbitrage", 
+    "defi",
+    "blockchain",
+    "crypto",
+    "bot",
+    "trading",
+    "bsc",
     "polygon",
-    "layer2",
-    "solidity"
+    "pancakeswap",
+    "uniswap",
+    "multi-network",
+    "testnet"
   ],
-  "author": "Crypto Arbitrage Bot",
+  "author": "Flavio Lombardi",
   "license": "MIT",
-  "dependencies": {
-    "@balancer-labs/v2-interfaces": "^0.4.0",
-    "@ethersproject/contracts": "^5.7.0",
-    "@ethersproject/providers": "^5.7.2",
-    "@openzeppelin/contracts": "^5.3.0",
-    "@uniswap/v2-core": "^1.0.1",
-    "@uniswap/v2-periphery": "^1.1.0-beta.0",
-    "axios": "^1.4.0",
-    "dotenv": "^16.0.3",
-    "ethers": "^5.7.2",
-    "node-cron": "^3.0.2",
-    "winston": "^3.8.2"
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FlavioLombardi95/dex_bot"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
-    "chai": "^4.3.7",
-    "hardhat": "^2.14.0",
-    "mocha": "^10.2.0"
-  }
+    "@types/node": "^20.0.0"
+  },
+  "workspaces": [
+    "BNB-Testnet",
+    "POL-Amoy"
+  ],
+  "readme": "README.md"
 }

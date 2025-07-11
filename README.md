@@ -1,243 +1,265 @@
-# 🤖 Bot Arbitraggio Crypto - Polygon L2
+# 🤖 DEX Arbitrage Bot - Multi-Network
 
-Bot decentralizzato per arbitraggio crypto tra DEX con flash loan, ottimizzato per **Polygon Layer 2** con analisi completa dei costi.
+## 🚀 Panoramica Progetto
 
-## 🎯 Caratteristiche Principali
+Bot di arbitraggio decentralizzato per DEX con supporto multi-network. Progetto organizzato per testare e confrontare diverse blockchain testnet con focus su costi e performance.
 
-- **Layer 2 Optimized**: Configurato per Polygon con costi gas 1000x inferiori
-- **Flash Loan Integration**: Utilizzo Balancer Vault per arbitraggio senza capitale
-- **Multi-DEX Support**: Uniswap V2 e SushiSwap su Polygon
-- **Cost Analysis**: Analisi completa di tutti i costi (gas, flash loan, infrastruttura)
-- **Real-time Monitoring**: Monitoraggio continuo opportunità arbitraggio
-- **Historical Analysis**: Analisi dati storici per ottimizzazione strategia
+## 📁 Struttura Progetto
 
-## 📊 Analisi Costi e Profittabilità
+```
+DEX Bot/
+├── 📁 POL-Amoy/          # Configurazione Polygon PoS Amoy Testnet
+│   ├── bot/               # Bot core per Layer 2
+│   ├── contracts/         # Smart contracts ottimizzati L2
+│   ├── scripts/           # Script analisi Polygon
+│   └── README.md          # Guida specifica POL-Amoy
+├── 📁 BNB-Testnet/       # Configurazione BSC Testnet
+│   ├── bot/               # Bot core per BSC
+│   ├── contracts/         # Smart contracts BSC
+│   ├── scripts/           # Script analisi BSC
+│   └── README.md          # Guida specifica BNB-Testnet
+└── README.md              # Questa guida generale
+```
 
-### 💰 Confronto Ethereum vs Polygon
+## 🌐 Configurazioni Disponibili
 
-| Costo | Ethereum | Polygon |
-|-------|----------|---------|
-| **Gas Cost** | $30.00 | **$0.03** |
-| **Flash Loan Fee** | 0.09% | 0.09% |
-| **Infrastruttura** | $16.33/giorno | $16.33/giorno |
-| **Vantaggio** | - | **1000x più economico** |
+### 💜 POL-Amoy (Polygon PoS Amoy Testnet)
+- **Focus**: Layer 2 con costi ultra-bassi
+- **Valuta**: POL (ex-MATIC)
+- **Vantaggi**: Gas 1000x più economico, flash loans
+- **DEX**: Uniswap V2, SushiSwap
+- **Stato**: ✅ Configurazione completa e testata
 
-### 🎯 Soglie Minime Profittevoli
+### 🟡 BNB-Testnet (Binance Smart Chain Testnet)
+- **Focus**: DEX funzionali e alta liquidità
+- **Valuta**: BNB
+- **Vantaggi**: DEX reali, PancakeSwap attivo
+- **DEX**: PancakeSwap V2, BakerySwap
+- **Stato**: ✅ Configurazione nuova e funzionale
 
-| Trade Size | Spread Minimo | Status |
-|------------|---------------|---------|
-| $1,000     | **>3.16%**   | ❌ Impossibile |
-| $5,000     | **>0.70%**   | ❌ Troppo alto |
-| $10,000    | **>0.40%**   | ✅ **POSSIBILE** |
-| $25,000    | **>0.21%**   | ✅ **OTTIMO** |
-| $50,000    | **>0.15%**   | ✅ **ECCELLENTE** |
-| $100,000   | **>0.12%**   | ✅ **PERFETTO** |
+## 🎯 Quale Scegliere?
 
-### 📈 Configurazione Ottimale
+### 🔥 Raccomandato per Iniziare: **BNB-Testnet**
+- ✅ DEX completamente funzionali
+- ✅ Liquidità reale su testnet
+- ✅ PancakeSwap e BakerySwap attivi
+- ✅ Coppie token esistenti e trading
+- ✅ Arbitraggio possibile immediatamente
 
-- **Soglia profitto minimo**: 0.2%
-- **Trade size minimo**: $10,000
-- **Frequenza attesa**: 3,600 opportunità/ora
-- **Profitto medio per opportunità**: $12.47
+### 🔬 Per Testing Avanzato: **POL-Amoy**
+- ✅ Costi gas ultra-bassi
+- ✅ Flash loans Balancer
+- ✅ Analisi Layer 2 completa
+- ⚠️ Limitata liquidità DEX su testnet
 
 ## 🚀 Quick Start
 
-### 1. Installazione
+### 1. Scegli la Configurazione
 
+#### Per BNB-Testnet (Raccomandato)
 ```bash
+cd BNB-Testnet
+npm install
+npm run setup:bsc
+npm run start:bsc
+```
+
+#### Per POL-Amoy (Avanzato)
+```bash
+cd POL-Amoy
+npm install
+npm run setup:polygon
+npm run start:polygon
+```
+
+### 2. Ottieni Token Testnet
+
+#### BNB Testnet
+- 🔗 **Faucet**: https://testnet.binance.org/faucet-smart
+- 💰 **Quantità**: 0.5-1 BNB testnet
+- ⚡ **Velocità**: Istantaneo
+
+#### POL Testnet
+- 🔗 **Faucet**: https://faucet.polygon.technology/
+- 💰 **Quantità**: 1-10 POL testnet
+- ⚡ **Velocità**: 1-2 minuti
+
+## 📊 Confronto Configurazioni
+
+| Caratteristica | BNB-Testnet | POL-Amoy |
+|----------------|-------------|----------|
+| **Costi Gas** | ~$0.001 | ~$0.0003 |
+| **Velocità** | ~3 secondi | ~2 secondi |
+| **DEX Funzionali** | ✅ Sì | ⚠️ Limitati |
+| **Liquidità** | ✅ Alta | ⚠️ Bassa |
+| **Flash Loans** | ⚠️ Limitati | ✅ Balancer |
+| **Arbitraggio Reale** | ✅ Possibile | ⚠️ Simulato |
+| **Complessità** | 🟢 Bassa | 🟡 Media |
+
+## 🛠️ Configurazione Generale
+
+### Prerequisiti
+- Node.js v16+
+- npm o yarn
+- MetaMask
+- Git
+
+### Setup Ambiente
+```bash
+# Clona il repository
 git clone <repository-url>
-cd dex_bot-main
+cd "DEX Bot"
+
+# Scegli la configurazione
+cd BNB-Testnet  # o POL-Amoy
+
+# Installa dipendenze
 npm install
 ```
 
-### 2. Configurazione
+## 💡 Comandi Cross-Network
 
+### Sviluppo
 ```bash
-# Copia configurazione Polygon
-cp polygon-mainnet.env .env
-
-# Inserisci la tua chiave privata
-nano .env
-```
-
-### 3. Test e Analisi
-
-```bash
-# Test configurazione
-npm run test:polygon
+# Test completo
+npm run test:full
 
 # Analisi costi
-npm run polygon-costs
+npm run analyze:costs
 
-# Analisi opportunità storiche
-npm run analyze
-
-# Monitoraggio tempo reale
-npm run real-data:monitor
+# Monitoraggio
+npm run logs
 ```
 
-### 4. Deploy e Avvio
-
+### Deploy
 ```bash
-# Deploy su Polygon
+# BNB-Testnet
+npm run deploy:bsc
+
+# POL-Amoy
 npm run deploy:polygon
-
-# Avvio bot
-npm run start:polygon
 ```
 
-## 📋 Script Disponibili
+## 📈 Performance Attese
 
-### 🔧 Setup e Test
-- `npm run test:polygon` - Test suite completo Polygon
-- `npm run test:simulation` - Simulazione logica arbitraggio
-- `npm run test:realistic` - Test con spread realistici
+### BNB-Testnet
+- **Opportunità**: 100-500/ora
+- **Costo transazione**: ~0.001 BNB
+- **Profitto minimo**: 0.5%
+- **Successo**: 85-95%
 
-### 💰 Analisi Costi
-- `npm run profitability` - Analisi profittabilità base
-- `npm run costs` - Analisi costi completi (Ethereum)
-- `npm run polygon-costs` - Analisi costi Polygon ottimizzata
+### POL-Amoy
+- **Opportunità**: 1000-3600/ora
+- **Costo transazione**: ~0.0003 POL
+- **Profitto minimo**: 0.2%
+- **Successo**: 90-98%
 
-### 📊 Analisi Opportunità
-- `npm run analyze` - Analisi opportunità storiche (72 ore)
-- `npm run real-data:realtime` - Analisi tempo reale
-- `npm run real-data:monitor` - Monitoraggio continuo
-- `npm run real-data:analyze` - Analisi dati storici salvati
+## 🔧 Configurazione Avanzata
 
-### ⚙️ Configurazione
-- `npm run config` - Mostra configurazione ottimale
-- `npm run setup:polygon` - Setup Polygon
-- `npm run deploy:polygon` - Deploy su Polygon
+### Variabili d'Ambiente
+Ogni configurazione ha il suo file `.env`:
 
-## 🏗️ Architettura
-
-```
-dex_bot-main/
-├── bot/                    # Core del bot
-│   ├── config.js          # Configurazione ottimizzata
-│   ├── index.js           # Entry point
-│   └── monitor.js         # Monitoraggio prezzi
-├── contracts/             # Smart contracts
-│   └── Arbitrage.sol      # Contratto arbitraggio
-├── scripts/               # Script di analisi
-│   ├── arbitrage-opportunity-analyzer.js
-│   ├── complete-cost-analysis.js
-│   ├── polygon-cost-analysis.js
-│   ├── real-data-analyzer.js
-│   └── final-configuration.js
-├── reports/               # Report analisi
-├── data/                  # Dati storici
-└── docs/                  # Documentazione
+#### BNB-Testnet
+```bash
+# File: BNB-Testnet/bsc-testnet.env
+PRIVATE_KEY=your_private_key
+RPC_URL=https://data-seed-prebsc-1-s1.binance.org:8545
+CHAIN_ID=97
 ```
 
-## 📈 Risultati Analisi 72 Ore
-
-- **Opportunità totali**: 259,200
-- **Frequenza**: 3,600 opportunità/ora
-- **Profitto totale stimato**: $3,231,844.69
-- **Profitto medio per opportunità**: $12.47
-- **Tasso di successo**: 100%
+#### POL-Amoy  
+```bash
+# File: POL-Amoy/polygon-amoy.env
+PRIVATE_KEY=your_private_key
+RPC_URL=https://rpc-amoy.polygon.technology
+CHAIN_ID=80002
+```
 
 ## 🔒 Sicurezza
 
-- **Dry Run Mode**: Test senza transazioni reali
-- **Slippage Protection**: Protezione da slippage eccessivo
-- **Gas Optimization**: Ottimizzazione costi gas per L2
-- **Error Handling**: Gestione errori robusta
+### Best Practices
+- ✅ Usa wallet dedicati per testnet
+- ✅ Non condividere mai chiavi private
+- ✅ Testa sempre prima di mainnet
+- ✅ Monitora transazioni
+- ✅ Usa DRY_RUN=true inizialmente
 
-## 📚 Documentazione
+### Gestione Chiavi
+```bash
+# Genera nuova chiave per testnet
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
-- [SETUP.md](SETUP.md) - Guida setup dettagliata
-- [POLYGON_GUIDE.md](POLYGON_GUIDE.md) - Guida specifica Polygon
-- [TESTNET_GUIDE.md](TESTNET_GUIDE.md) - Guida testnet
-- [CHANGELOG.md](CHANGELOG.md) - Changelog completo
+# Verifica indirizzo
+node -e "const ethers = require('ethers'); const wallet = new ethers.Wallet('0x' + process.argv[1]); console.log(wallet.address)" YOUR_PRIVATE_KEY
+```
 
-## 🤝 Contribuire
+## 🆘 Supporto
 
-1. Fork il repository
-2. Crea un branch per la feature (`git checkout -b feature/AmazingFeature`)
-3. Commit le modifiche (`git commit -m 'Add some AmazingFeature'`)
-4. Push al branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
+### Problemi Comuni
+1. **"Network Error"**: Verifica RPC endpoint
+2. **"Insufficient Balance"**: Usa faucet per token
+3. **"Contract Error"**: Ricompila e re-deploy
+4. **"No Opportunities"**: Normale in mercati stabili
 
-## 📄 Licenza
+### Debug
+```bash
+# Verifica connessione
+npm run test:connection
 
-Distribuito sotto licenza MIT. Vedi `LICENSE` per maggiori informazioni.
+# Controlla configurazione
+npm run config:check
 
-## ⚠️ Disclaimer
+# Visualizza log
+npm run logs
+```
 
-Questo software è fornito "così com'è" senza garanzie. L'arbitraggio crypto comporta rischi significativi. Utilizzare solo con capitale che si può permettere di perdere.
+## 🔗 Collegamenti Utili
+
+### Faucet
+- [BSC Testnet Faucet](https://testnet.binance.org/faucet-smart)
+- [Polygon Faucet](https://faucet.polygon.technology/)
+
+### Explorer
+- [BSC Testnet Explorer](https://testnet.bscscan.com)
+- [Polygon Amoy Explorer](https://www.oklink.com/amoy)
+
+### DEX
+- [PancakeSwap](https://pancakeswap.finance/)
+- [Uniswap](https://app.uniswap.org/)
 
 ---
 
-**🎯 Obiettivo**: Bot di arbitraggio ottimizzato per Polygon L2 con analisi completa dei costi per garantire profittabilità.
+## 📝 Changelog Generale
 
-## 🚀 Prossimi Passi - Test Reale
+### v2.0.0 (Current)
+- ✅ Organizzazione multi-network
+- ✅ Configurazione BNB-Testnet
+- ✅ Configurazione POL-Amoy separata
+- ✅ Guide specifiche per rete
+- ✅ Script ottimizzati per rete
 
-### ✅ **Configurazione Completata**
-- ✅ Progetto pulito e ottimizzato
-- ✅ Configurazione aggiornata per Polygon PoS Amoy
-- ✅ File obsoleti eliminati
-- ✅ Git sincronizzato
-
-### 🧪 **Test della Connessione**
-```bash
-# Test completo sistema
-npm run test:polygon
-
-# Verifica connessione RPC
-node -e "const { ethers } = require('ethers'); const provider = new ethers.providers.JsonRpcProvider('https://rpc-amoy.polygon.technology'); provider.getNetwork().then(network => console.log('Rete:', network.name, 'Chain ID:', network.chainId));"
-```
-
-### 💰 **Ottieni POL Testnet**
-1. Vai su: https://faucet.polygon.technology/
-2. Seleziona "Amoy" (nuova testnet ufficiale)
-3. Incolla l'indirizzo: `0x9a0f6808343230A4593Dd20697e1813ba5a4063E`
-4. Clicca "Submit" per ricevere POL
-
-### 🚀 **Avvio Bot**
-```bash
-# Avvio in modalità test (DRY_RUN=true)
-npm run start:polygon
-
-# Avvio con transazioni reali (DRY_RUN=false)
-# Modifica .env: DRY_RUN=false
-npm run start:polygon
-```
-
-### 📊 **Monitoraggio**
-```bash
-# Log in tempo reale
-tail -f logs/polygon-arbitrage.log
-
-# Cerca opportunità
-grep "opportunità" logs/polygon-arbitrage.log
-
-# Cerca errori
-grep "ERROR" logs/polygon-arbitrage.log
-```
-
-### 🔧 **Deploy Contratto (Opzionale)**
-```bash
-# Deploy su Amoy
-npm run deploy:polygon
-
-# Verifica contratto
-npm run verify:contract
-```
-
-### ⚠️ **Note Importanti**
-- **Testnet**: Amoy è la nuova testnet (sostituisce Mumbai)
-- **Gas fees**: Molto basse su Amoy
-- **Sicurezza**: Mantieni DRY_RUN=true inizialmente
-- **Monitoraggio**: Controlla sempre i log
-
-### 🎯 **Obiettivo Test**
-- Verificare connessione blockchain
-- Testare monitoraggio prezzi
-- Validare logica arbitraggio
-- Confermare profittabilità su L2
+### v1.0.0 (Previous)
+- ✅ Configurazione Polygon unica
+- ✅ Analisi costi completa
+- ✅ Flash loans integration
 
 ---
 
-**🚀 Il bot è pronto per il test reale su Polygon PoS Amoy!**
+## 🎯 Roadmap
+
+### Immediato
+- [ ] Test completo BNB-Testnet
+- [ ] Ottimizzazioni gas
+- [ ] Documentazione aggiornata
+
+### Futuro
+- [ ] Arbitrum Testnet
+- [ ] Ethereum Sepolia
+- [ ] Configurazione mainnet
+- [ ] GUI per monitoring
+
+---
+
+**🚀 Progetto pronto per testing multi-network!**
+
+*Inizia con BNB-Testnet per un'esperienza immediata, poi sperimenta con POL-Amoy per analisi Layer 2.*

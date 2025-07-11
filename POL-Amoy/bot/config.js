@@ -4,9 +4,9 @@ dotenv.config();
 const config = {
     // Configurazione blockchain
     network: {
-        name: process.env.NETWORK || 'amoy', // Default a Amoy testnet
-        rpcUrl: process.env.RPC_URL || 'https://rpc-amoy.polygon.technology',
-        chainId: process.env.CHAIN_ID || 80002 // Amoy testnet
+        name: process.env.NETWORK || 'bscTestnet', // Default a BSC testnet
+        rpcUrl: process.env.RPC_URL || 'https://data-seed-prebsc-1-s1.binance.org:8545',
+        chainId: process.env.CHAIN_ID || 97 // BSC testnet
     },
     
     // Configurazione wallet
@@ -21,49 +21,47 @@ const config = {
         balancerVault: process.env.BALANCER_VAULT_ADDRESS || '0xBA12222222228d8Ba445958a75a0704d566BF2C8' // Balancer Vault
     },
     
-    // Router DEX per Polygon/Amoy
+    // Router DEX per BSC Testnet
     dexRouters: {
-        uniswap: process.env.UNISWAP_ROUTER || '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff', // Uniswap V2 Router
-        sushiswap: process.env.SUSHISWAP_ROUTER || '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506' // SushiSwap Router
+        pancakeswap: process.env.PANCAKESWAP_ROUTER || '0xD99D1c33F9fC3444f8101754aBC46c52416550D1', // PancakeSwap V2 Router
+        bakeryswap: process.env.BAKERYSWAP_ROUTER || '0xCDe540d7eAFE93aC5fE6233Bee57E1270D3E330F' // BakerySwap Router  
     },
     
-    // Factory DEX per Polygon/Amoy
+    // Factory DEX per BSC Testnet
     dexFactories: {
-        uniswap: process.env.UNISWAP_FACTORY || '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f',
-        sushiswap: process.env.SUSHISWAP_FACTORY || '0xc35DADB65012eC5796536bD9864eD8773aBc74C4'
+        pancakeswap: process.env.PANCAKESWAP_FACTORY || '0x6725F303b657a9451d8BA641348b6761A6CC7a17', // PancakeSwap V2 Factory
+        bakeryswap: process.env.BAKERYSWAP_FACTORY || '0x01bF7C66c6BD861915CdaaE475042d3c4BaE16A7' // BakerySwap Factory
     },
     
-    // Token supportati per Polygon/Amoy
+    // Token supportati per BSC Testnet
     tokens: {
-        WMATIC: {
-            address: process.env.WMATIC_ADDRESS || '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889', // Amoy WMATIC
-            symbol: 'WMATIC',
+        BNB: {
+            address: '0x0000000000000000000000000000000000000000', // Native BNB
+            symbol: 'BNB',
             decimals: 18
         },
-        USDC: {
-            address: process.env.USDC_ADDRESS || '0xe6b8a5CF854791412c1f6EFC7CAf629f5Df1c747', // Amoy USDC
-            symbol: 'USDC',
-            decimals: 6
+        WBNB: {
+            address: process.env.WBNB_ADDRESS || '0xae13d989dac2f0debff460ac112a837c89baa7cd', // WBNB testnet
+            symbol: 'WBNB', 
+            decimals: 18
+        },
+        BUSD: {
+            address: process.env.BUSD_ADDRESS || '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee', // BUSD testnet
+            symbol: 'BUSD',
+            decimals: 18
         },
         USDT: {
-            address: process.env.USDT_ADDRESS || '0xA02f6adc7926efeBBd59Fd43A84f1E0C1232Fa2D', // Amoy USDT
+            address: process.env.USDT_ADDRESS || '0x7ef95a0FEE0Dd31b22626fA2e10Ee6A223F8a684', // USDT testnet
             symbol: 'USDT',
-            decimals: 6
-        },
-        DAI: {
-            address: process.env.DAI_ADDRESS || '0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F', // Amoy DAI
-            symbol: 'DAI',
             decimals: 18
         }
     },
     
-    // Coppie di trading da monitorare (ottimizzate per Polygon)
+    // Coppie di trading da monitorare (BSC testnet)
     tradingPairs: [
-        { tokenA: 'WMATIC', tokenB: 'USDC' },
-        { tokenA: 'WMATIC', tokenB: 'USDT' },
-        { tokenA: 'USDC', tokenB: 'USDT' },
-        { tokenA: 'WMATIC', tokenB: 'DAI' },
-        { tokenA: 'USDC', tokenB: 'DAI' }
+        { tokenA: 'WBNB', tokenB: 'BUSD' }, // WBNB vs BUSD - coppia principale
+        { tokenA: 'WBNB', tokenB: 'USDT' }, // WBNB vs USDT - coppia secondaria
+        { tokenA: 'BUSD', tokenB: 'USDT' }  // BUSD vs USDT - stablecoin pair
     ],
     
     // Parametri arbitraggio ottimizzati per Polygon
@@ -79,7 +77,7 @@ const config = {
     // Configurazione logging
     logging: {
         level: process.env.LOG_LEVEL || 'info',
-        file: 'logs/amoy-arbitrage.log',
+        file: 'logs/bsc-arbitrage.log',
         maxSize: '10m',
         maxFiles: 5
     }
@@ -87,33 +85,31 @@ const config = {
 
 // Configurazioni specifiche per rete
 const networkConfigs = {
-    // Mumbai Testnet (Polygon) - DEPRECATO
-    mumbai: {
-        rpcUrl: 'https://rpc-mumbai.maticvigil.com',
-        chainId: 80001,
-        balancerVault: '0xBA12222222228d8Ba445958a75a0704d566BF2C8',
-        uniswapRouter: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff',
-        sushiswapRouter: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+    // BSC Testnet - PRINCIPALE
+    bscTestnet: {
+        rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+        chainId: 97,
+        balancerVault: null, // Non disponibile su BSC testnet
+        pancakeswapRouter: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
+        bakeryswapRouter: '0xCDe540d7eAFE93aC5fE6233Bee57E1270D3E330F',
         tokens: {
-            WMATIC: '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
-            USDC: '0xe6b8a5CF854791412c1f6EFC7CAf629f5Df1c747',
-            USDT: '0xA02f6adc7926efeBBd59Fd43A84f1E0C1232Fa2D',
-            DAI: '0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F'
+            BNB: '0x0000000000000000000000000000000000000000', // Native BNB
+            WBNB: '0xae13d989dac2f0debff460ac112a837c89baa7cd', // WBNB testnet
+            BUSD: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee', // BUSD testnet
+            USDT: '0x7ef95a0FEE0Dd31b22626fA2e10Ee6A223F8a684'  // USDT testnet
         }
     },
     
-    // Polygon PoS Amoy Testnet (NUOVO)
+    // Polygon PoS Amoy Testnet (BACKUP)
     amoy: {
         rpcUrl: 'https://rpc-amoy.polygon.technology',
         chainId: 80002,
         balancerVault: '0xBA12222222228d8Ba445958a75a0704d566BF2C8',
-        uniswapRouter: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff',
-        sushiswapRouter: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
+        pancakeswapRouter: '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
+        bakeryswapRouter: '0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F',
         tokens: {
-            WMATIC: '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
-            USDC: '0xe6b8a5CF854791412c1f6EFC7CAf629f5Df1c747',
-            USDT: '0xA02f6adc7926efeBBd59Fd43A84f1E0C1232Fa2D',
-            DAI: '0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F'
+            BNB: '0x0000000000000000000000000000000000000000', // Native POL
+            WBNB: '0x360ad4f9a9A8EFe9A8DCB5f461c4Cc1047E1Dcf9' // WMATIC su Amoy
         }
     },
     
