@@ -1,265 +1,233 @@
-# 🤖 DEX Arbitrage Bot - Multi-Network
+# DEX Bot - Arbitraggio Multi-Network Ottimizzato
 
-## 🚀 Panoramica Progetto
+Bot di arbitraggio automatico per DEX (Decentralized Exchanges) con **architettura scalabile** e **infrastruttura production-ready**.
 
-Bot di arbitraggio decentralizzato per DEX con supporto multi-network. Progetto organizzato per testare e confrontare diverse blockchain testnet con focus su costi e performance.
+## 🚀 Funzionalità Principali
 
-## 📁 Struttura Progetto
+- **🔄 Arbitraggio Triangolare**: Rileva opportunità di arbitraggio su 3 token
+- **🌐 Multi-Network**: Supporta BSC Testnet, Polygon Amoy, e future network
+- **📊 Monitoring Real-time**: Scansione continua con API REST
+- **💰 Analisi Profittabilità**: Calcolo automatico considerando gas fees e slippage
+- **🔐 Sicurezza**: Controlli di sicurezza integrati e gestione errori robusta
+- **📈 Analytics**: Database SQLite per tracking performance
+- **⚡ Performance**: Connection pooling e caching ottimizzato
+
+## 🏗️ Architettura Ottimizzata
+
+### Core Infrastructure
 
 ```
-DEX Bot/
-├── 📁 POL-Amoy/          # Configurazione Polygon PoS Amoy Testnet
-│   ├── bot/               # Bot core per Layer 2
-│   ├── contracts/         # Smart contracts ottimizzati L2
-│   ├── scripts/           # Script analisi Polygon
-│   └── README.md          # Guida specifica POL-Amoy
-├── 📁 BNB-Testnet/       # Configurazione BSC Testnet
-│   ├── bot/               # Bot core per BSC
-│   ├── contracts/         # Smart contracts BSC
-│   ├── scripts/           # Script analisi BSC
-│   └── README.md          # Guida specifica BNB-Testnet
-└── README.md              # Questa guida generale
+dex_bot-main/
+├── 🛠️ project-config.js         # Configurazione unificata multi-network
+├── 🚀 deployment-manager.js     # Gestione deploy multi-network
+├── 📊 package.json              # Script di gestione progetto
+├── 🌐 BNB-Testnet/             # BSC Testnet (Production Ready)
+│   ├── 🔧 core/                 # Infrastruttura core
+│   │   ├── config.js           # ConfigManager centralizzato
+│   │   ├── logger.js           # Winston logger strutturato
+│   │   ├── connection-pool.js  # Pool connessioni con failover
+│   │   └── base-scanner.js     # Classe base per scanner
+│   ├── 📱 app.js               # Applicazione principale con API
+│   ├── 🔍 scanners/            # Scanner specializzati
+│   │   └── triangular-scanner.js
+│   ├── 🛠️ scripts/             # Script ottimizzati
+│   │   ├── deploy-optimized.js
+│   │   ├── setup-optimized.js
+│   │   └── profitability-analyzer.js
+│   └── 📊 reports/             # Analytics e report
+└── 🔮 POL-Amoy/               # Polygon Amoy (Struttura parallela)
+    └── [Stessa struttura ottimizzata]
 ```
 
-## 🌐 Configurazioni Disponibili
+## 🚀 Setup Rapido
 
-### 💜 POL-Amoy (Polygon PoS Amoy Testnet)
-- **Focus**: Layer 2 con costi ultra-bassi
-- **Valuta**: POL (ex-MATIC)
-- **Vantaggi**: Gas 1000x più economico, flash loans
-- **DEX**: Uniswap V2, SushiSwap
-- **Stato**: ✅ Configurazione completa e testata
-
-### 🟡 BNB-Testnet (Binance Smart Chain Testnet)
-- **Focus**: DEX funzionali e alta liquidità
-- **Valuta**: BNB
-- **Vantaggi**: DEX reali, PancakeSwap attivo
-- **DEX**: PancakeSwap V2, BakerySwap
-- **Stato**: ✅ Configurazione nuova e funzionale
-
-## 🎯 Quale Scegliere?
-
-### 🔥 Raccomandato per Iniziare: **BNB-Testnet**
-- ✅ DEX completamente funzionali
-- ✅ Liquidità reale su testnet
-- ✅ PancakeSwap e BakerySwap attivi
-- ✅ Coppie token esistenti e trading
-- ✅ Arbitraggio possibile immediatamente
-
-### 🔬 Per Testing Avanzato: **POL-Amoy**
-- ✅ Costi gas ultra-bassi
-- ✅ Flash loans Balancer
-- ✅ Analisi Layer 2 completa
-- ⚠️ Limitata liquidità DEX su testnet
-
-## 🚀 Quick Start
-
-### 1. Scegli la Configurazione
-
-#### Per BNB-Testnet (Raccomandato)
+### 1. Panoramica Progetto
 ```bash
-cd BNB-Testnet
-npm install
-npm run setup:bsc
-npm run start:bsc
+# Visualizza panoramica completa
+npm run project:overview
+
+# Sincronizza struttura
+npm run project:sync
 ```
 
-#### Per POL-Amoy (Avanzato)
+### 2. Setup Completo Automatico
 ```bash
-cd POL-Amoy
-npm install
-npm run setup:polygon
-npm run start:polygon
+# Setup completo di tutto il progetto
+npm run setup:full
 ```
 
-### 2. Ottieni Token Testnet
+### 3. Setup Manuale Per Network
 
-#### BNB Testnet
-- 🔗 **Faucet**: https://testnet.binance.org/faucet-smart
-- 💰 **Quantità**: 0.5-1 BNB testnet
-- ⚡ **Velocità**: Istantaneo
-
-#### POL Testnet
-- 🔗 **Faucet**: https://faucet.polygon.technology/
-- 💰 **Quantità**: 1-10 POL testnet
-- ⚡ **Velocità**: 1-2 minuti
-
-## 📊 Confronto Configurazioni
-
-| Caratteristica | BNB-Testnet | POL-Amoy |
-|----------------|-------------|----------|
-| **Costi Gas** | ~$0.001 | ~$0.0003 |
-| **Velocità** | ~3 secondi | ~2 secondi |
-| **DEX Funzionali** | ✅ Sì | ⚠️ Limitati |
-| **Liquidità** | ✅ Alta | ⚠️ Bassa |
-| **Flash Loans** | ⚠️ Limitati | ✅ Balancer |
-| **Arbitraggio Reale** | ✅ Possibile | ⚠️ Simulato |
-| **Complessità** | 🟢 Bassa | 🟡 Media |
-
-## 🛠️ Configurazione Generale
-
-### Prerequisiti
-- Node.js v16+
-- npm o yarn
-- MetaMask
-- Git
-
-### Setup Ambiente
+#### BSC Testnet
 ```bash
-# Clona il repository
-git clone <repository-url>
-cd "DEX Bot"
+# Setup ottimizzato
+npm run bsc:setup
 
-# Scegli la configurazione
-cd BNB-Testnet  # o POL-Amoy
+# Deploy ottimizzato
+npm run bsc:deploy
 
-# Installa dipendenze
-npm install
+# Analisi profittabilità
+npm run bsc:analyze
+
+# Avvia bot
+npm run bsc:start
 ```
 
-## 💡 Comandi Cross-Network
-
-### Sviluppo
+#### Polygon Amoy
 ```bash
-# Test completo
-npm run test:full
+# Setup ottimizzato
+npm run amoy:setup
 
-# Analisi costi
-npm run analyze:costs
+# Deploy ottimizzato
+npm run amoy:deploy
 
-# Monitoraggio
+# Analisi profittabilità
+npm run amoy:analyze
+
+# Avvia bot
+npm run amoy:start
+```
+
+## 📊 Gestione e Monitoring
+
+### Status e Monitoring
+```bash
+# Mostra status completo
+npm run status
+
+# Visualizza logs unificati
 npm run logs
+
+# Health check tutti i servizi
+npm run health
 ```
 
-### Deploy
+### Deploy Multi-Network
 ```bash
-# BNB-Testnet
-npm run deploy:bsc
+# Deploy su tutti i network
+npm run deploy:all
 
-# POL-Amoy
-npm run deploy:polygon
+# Deploy su network specifico
+npm run deploy:single bsc-testnet
+
+# Verifica tutti i deploy
+npm run verify:deployments
 ```
 
-## 📈 Performance Attese
-
-### BNB-Testnet
-- **Opportunità**: 100-500/ora
-- **Costo transazione**: ~0.001 BNB
-- **Profitto minimo**: 0.5%
-- **Successo**: 85-95%
-
-### POL-Amoy
-- **Opportunità**: 1000-3600/ora
-- **Costo transazione**: ~0.0003 POL
-- **Profitto minimo**: 0.2%
-- **Successo**: 90-98%
-
-## 🔧 Configurazione Avanzata
-
-### Variabili d'Ambiente
-Ogni configurazione ha il suo file `.env`:
-
-#### BNB-Testnet
+### Analisi e Report
 ```bash
-# File: BNB-Testnet/bsc-testnet.env
-PRIVATE_KEY=your_private_key
-RPC_URL=https://data-seed-prebsc-1-s1.binance.org:8545
-CHAIN_ID=97
+# Analisi profittabilità network specifico
+npm run analyze:single bsc-testnet
+
+# Sincronizza struttura progetto
+npm run sync:structure
 ```
 
-#### POL-Amoy  
-```bash
-# File: POL-Amoy/polygon-amoy.env
-PRIVATE_KEY=your_private_key
-RPC_URL=https://rpc-amoy.polygon.technology
-CHAIN_ID=80002
-```
+## 🔧 Caratteristiche Tecniche
 
-## 🔒 Sicurezza
+### ConfigManager Unificato
+- **Multi-network**: Gestisce configurazioni per tutte le reti
+- **Validazione**: Controlli automatici di configurazione
+- **Ambiente**: Supporto per testnet/mainnet
+- **Sicurezza**: Gestione sicura di private keys
 
-### Best Practices
-- ✅ Usa wallet dedicati per testnet
-- ✅ Non condividere mai chiavi private
-- ✅ Testa sempre prima di mainnet
-- ✅ Monitora transazioni
-- ✅ Usa DRY_RUN=true inizialmente
+### Logger Strutturato
+- **Winston**: Logging professionale con rotazione
+- **Categorizzazione**: Log separati per opportunità, profitti, errori
+- **Context**: Logging con context per debugging
+- **Performance**: Track performance e metriche
 
-### Gestione Chiavi
-```bash
-# Genera nuova chiave per testnet
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+### Connection Pool
+- **Failover**: Multiple RPC URLs con switching automatico
+- **Health Check**: Monitoring connessioni ogni minuto
+- **Load Balancing**: Distribuzione carico tra provider
+- **Retry Logic**: Gestione automatica errori rete
 
-# Verifica indirizzo
-node -e "const ethers = require('ethers'); const wallet = new ethers.Wallet('0x' + process.argv[1]); console.log(wallet.address)" YOUR_PRIVATE_KEY
-```
+### Scanner Modulari
+- **Base Class**: Classe base per tutti i scanner
+- **Specializzati**: Scanner triangolare, new tokens, profit scanner
+- **Caching**: Cache intelligente per performance
+- **Analytics**: Tracking opportunità e performance
 
-## 🆘 Supporto
+### API REST
+- **Endpoints**: `/api/health`, `/api/scanners`, `/api/opportunities`
+- **Rate Limiting**: Protezione contro spam
+- **CORS**: Supporto per frontend
+- **Monitoring**: Health check e metriche
 
-### Problemi Comuni
-1. **"Network Error"**: Verifica RPC endpoint
-2. **"Insufficient Balance"**: Usa faucet per token
-3. **"Contract Error"**: Ricompila e re-deploy
-4. **"No Opportunities"**: Normale in mercati stabili
+### Database Analytics
+- **SQLite**: Persistenza opportunità ed esecuzioni
+- **Performance**: Tracking performance storica
+- **Report**: Generazione report automatici
+- **Backup**: Sistema backup automatico
 
-### Debug
-```bash
-# Verifica connessione
-npm run test:connection
+## 🌟 Funzionalità Avanzate
 
-# Controlla configurazione
-npm run config:check
+### Arbitraggio Triangolare
+- **Volatilità**: Calcolo volatilità per prioritizzazione
+- **Multi-amount**: Test con diverse dimensioni trade
+- **Filtering**: Filtri avanzati per opportunità
+- **Execution**: Esecuzione automatica sicura
 
-# Visualizza log
-npm run logs
-```
+### Analisi Profittabilità
+- **Real-time**: Condizioni mercato in tempo reale
+- **Costi**: Calcolo preciso gas fees e slippage
+- **Scenari**: Simulazione diversi scenari di mercato
+- **Raccomandazioni**: Suggerimenti automatici
 
-## 🔗 Collegamenti Utili
+### Sicurezza
+- **MEV Protection**: Protezione contro MEV attacks
+- **Slippage Control**: Controllo slippage massimo
+- **Emergency Stop**: Sistema di arresto emergenza
+- **Audit Trail**: Log completo di tutte le operazioni
 
-### Faucet
-- [BSC Testnet Faucet](https://testnet.binance.org/faucet-smart)
-- [Polygon Faucet](https://faucet.polygon.technology/)
+## 📈 Performance
 
-### Explorer
-- [BSC Testnet Explorer](https://testnet.bscscan.com)
-- [Polygon Amoy Explorer](https://www.oklink.com/amoy)
+### Ottimizzazioni
+- **Connection Pooling**: Riduce latenza connessioni
+- **Caching**: Cache intelligente per dati frecuenti
+- **Async/Await**: Operazioni asincrone ottimizzate
+- **Batch Processing**: Elaborazione batch per efficienza
 
-### DEX
-- [PancakeSwap](https://pancakeswap.finance/)
-- [Uniswap](https://app.uniswap.org/)
+### Monitoring
+- **Metriche**: Tracking performance real-time
+- **Alerts**: Notifiche per anomalie
+- **Reports**: Report performance automatici
+- **Dashboard**: Dashboard web per monitoring
+
+## 🔮 Scalabilità Futura
+
+### Network Supportati
+- ✅ **BSC Testnet** (Attivo)
+- ✅ **Polygon Amoy** (Attivo)
+- ⏳ **Ethereum Mainnet** (Futuro)
+- ⏳ **Arbitrum One** (Futuro)
+
+### Estensibilità
+- **Plugin System**: Architettura plugin per nuove feature
+- **Multi-DEX**: Supporto per nuovi DEX
+- **Strategies**: Nuove strategie di arbitraggio
+- **Integrations**: Integrazioni con servizi esterni
+
+## 🤝 Contribuire
+
+1. Fork del repository
+2. Crea un branch feature (`git checkout -b feature/AmazingFeature`)
+3. Commit delle modifiche (`git commit -m 'Add AmazingFeature'`)
+4. Push al branch (`git push origin feature/AmazingFeature`)
+5. Apri una Pull Request
+
+## 📚 Documentazione
+
+- [Setup Dettagliato](SETUP.md)
+- [Changelog](CHANGELOG.md)
+- [BSC Testnet Guide](BNB-Testnet/README.md)
+- [Polygon Amoy Guide](POL-Amoy/README.md)
+
+## 📄 Licenza
+
+Questo progetto è rilasciato sotto licenza MIT - vedi il file [LICENSE](LICENSE) per i dettagli.
 
 ---
 
-## 📝 Changelog Generale
-
-### v2.0.0 (Current)
-- ✅ Organizzazione multi-network
-- ✅ Configurazione BNB-Testnet
-- ✅ Configurazione POL-Amoy separata
-- ✅ Guide specifiche per rete
-- ✅ Script ottimizzati per rete
-
-### v1.0.0 (Previous)
-- ✅ Configurazione Polygon unica
-- ✅ Analisi costi completa
-- ✅ Flash loans integration
-
----
-
-## 🎯 Roadmap
-
-### Immediato
-- [ ] Test completo BNB-Testnet
-- [ ] Ottimizzazioni gas
-- [ ] Documentazione aggiornata
-
-### Futuro
-- [ ] Arbitrum Testnet
-- [ ] Ethereum Sepolia
-- [ ] Configurazione mainnet
-- [ ] GUI per monitoring
-
----
-
-**🚀 Progetto pronto per testing multi-network!**
-
-*Inizia con BNB-Testnet per un'esperienza immediata, poi sperimenta con POL-Amoy per analisi Layer 2.*
+**🎯 Risultato**: Infrastruttura DEX Bot completamente ottimizzata, scalabile e production-ready con supporto multi-network e architettura modulare per future espansioni.
