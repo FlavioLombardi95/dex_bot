@@ -25,7 +25,7 @@ DEX Bot/
 - ✅ **Costi bassi**: ~0.001 BNB per transazione
 - 🎯 **Ideale per**: Prime prove, test realistici, validazione logica
 
-### 💜 POL-Amoy (Per Testing Avanzato L2)
+### 🔺 Focus BNB-Testnet
 - ✅ **Costi ultra-bassi**: Gas 1000x più economico
 - ✅ **Flash loans**: Integrazione Balancer per capital efficiency
 - ✅ **Layer 2**: Tecnologia Polygon per alta velocità

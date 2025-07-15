@@ -57,43 +57,6 @@ class ProjectConfig {
                 ],
                 status: 'active'
             },
-            'polygon-amoy': {
-                name: 'Polygon Amoy',
-                chainId: 80002,
-                currency: 'POL',
-                path: 'POL-Amoy',
-                rpc: 'https://rpc-amoy.polygon.technology',
-                explorer: 'https://www.oklink.com/amoy',
-                dex: {
-                    quickswap: {
-                        name: 'QuickSwap',
-                        router: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff',
-                        factory: '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32',
-                        initCodeHash: '0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f'
-                    }
-                },
-                tokens: {
-                    WMATIC: {
-                        address: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
-                        symbol: 'WMATIC',
-                        decimals: 18
-                    },
-                    USDC: {
-                        address: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
-                        symbol: 'USDC',
-                        decimals: 6
-                    },
-                    USDT: {
-                        address: '0x2e1AD108fF1D8C782fcBbB89AAd783aC49586756',
-                        symbol: 'USDT',
-                        decimals: 6
-                    }
-                },
-                faucets: [
-                    'https://faucet.polygon.technology'
-                ],
-                status: 'active'
-            },
             // Preparato per future network
             'ethereum-mainnet': {
                 name: 'Ethereum Mainnet',

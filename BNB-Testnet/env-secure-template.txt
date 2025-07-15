@@ -1,0 +1,88 @@
+# 🛡️ TEMPLATE CONFIGURAZIONE SICURA BNB-TESTNET
+# ===============================================
+# 
+# ⚠️  IMPORTANTE: Questa configurazione è per TESTNET ONLY
+# ⚠️  MAI usare private key principale o fondi reali
+# ⚠️  Leggi la guida sicurezza prima di modificare
+
+# === RETE (TESTNET ONLY) ===
+NETWORK=bscTestnet
+RPC_URL=https://data-seed-prebsc-1-s1.binance.org:8545
+CHAIN_ID=97
+EXPLORER_URL=https://testnet.bscscan.com
+
+# === WALLET SICUREZZA ===
+# ⚠️  USA SOLO WALLET DEDICATO PER TESTNET
+# ⚠️  MAI inserire private key con fondi reali
+# ⚠️  Crea wallet separato per sviluppo
+PRIVATE_KEY=your_testnet_only_private_key_here
+
+# === SICUREZZA FORZATA ===
+# Queste impostazioni FORZANO modalità sicura
+TESTNET_ONLY=true
+DRY_RUN=true
+NO_MAINNET_ACCESS=true
+SECURITY_MODE=strict
+
+# === CONFIGURAZIONE SVILUPPO ===
+# Parametri ottimizzati per sviluppo sicuro
+TRIANGULAR_SCAN_INTERVAL=3000
+PRICE_CHECK_INTERVAL=5000
+MIN_PROFIT_PERCENTAGE=0.1
+MAX_SLIPPAGE=2.0
+
+# === PERFORMANCE ===
+ENABLE_CACHING=true
+CACHE_TTL_SECONDS=30
+PARALLEL_REQUESTS=3
+MAX_CONCURRENT_EXECUTIONS=2
+
+# === LOGGING E DEBUG ===
+LOG_LEVEL=debug
+ENABLE_DEBUG_LOGGING=true
+SAVE_DEBUG_TO_FILE=true
+AUDIT_ENABLED=true
+
+# === PROTEZIONI ===
+# Limiti di sicurezza per sviluppo
+MAX_TEST_AMOUNT=0.01
+MAX_DAILY_TRANSACTIONS=100
+ENABLE_BALANCE_MONITORING=true
+EMERGENCY_STOP_ENABLED=true
+
+# === MONITORAGGIO ===
+ENABLE_HEALTH_CHECK=true
+HEALTH_CHECK_INTERVAL=30000
+PERFORMANCE_TRACKING=true
+SAVE_PERFORMANCE_DATA=true
+
+# === BACKUP ===
+ENABLE_AUTO_BACKUP=true
+BACKUP_INTERVAL=3600000
+BACKUP_RETENTION_DAYS=7
+
+# === NOTIFICHE (OPZIONALE) ===
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+ENABLE_TELEGRAM_ALERTS=false
+
+# === CONTRATTI BSC TESTNET ===
+PANCAKESWAP_ROUTER=0xD99D1c33F9fC3444f8101754aBC46c52416550D1
+PANCAKESWAP_FACTORY=0x6725F303b657a9451d8BA641348b6761A6CC7a17
+WBNB_ADDRESS=0xae13d989dac2f0debff460ac112a837c89baa7cd
+USDT_ADDRESS=0x337610d27c682E347C9cD60BD4b3b107C9d34dDd
+BUSD_ADDRESS=0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee
+
+# === URLS UTILI ===
+# Faucet per BNB testnet: https://testnet.binance.org/faucet-smart
+# Explorer testnet: https://testnet.bscscan.com
+# PancakeSwap testnet: https://pancake.kiemtienonline360.com
+
+# === ISTRUZIONI SICUREZZA ===
+# 1. Crea wallet NUOVO solo per testnet
+# 2. Ottieni BNB testnet dal faucet
+# 3. Testa tutto prima di pensare a mainnet
+# 4. Usa sempre DRY_RUN=true inizialmente
+# 5. Monitora logs per errori
+# 6. Fai backup delle configurazioni
+# 7. MAI usare questo wallet per mainnet 

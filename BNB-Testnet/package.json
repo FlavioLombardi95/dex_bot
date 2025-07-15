@@ -30,10 +30,9 @@
     "setup:optimized": "node scripts/setup-optimized.js",
     "setup:bsc": "node scripts/setup-bsc.js",
     "config": "node scripts/final-configuration.js",
-    "analyze": "node scripts/profitability-analyzer.js",
+    "analyze": "node scripts/arbitrage-opportunity-analyzer.js",
     "config:show": "node -e \"console.log(JSON.stringify(require('./core/config').getConfig(), null, 2))\"",
     "config:validate": "node -e \"require('./core/config'); console.log('✅ Configuration valid')\"",
-    "analyze": "node scripts/arbitrage-opportunity-analyzer.js",
     "analyze:costs": "node scripts/complete-cost-analysis.js",
     "analyze:triangular": "node scripts/test-triangular-opportunities.js",
     "analyze:real": "node scripts/real-data-analyzer.js",
@@ -59,7 +58,10 @@
     "clean:logs": "rm -rf logs/*.log",
     "clean:data": "rm -rf data/*.db",
     "clean:all": "npm run clean && npm run clean:logs && npm run clean:data",
-    "install:deps": "npm install express cors express-rate-limit sqlite3 sqlite redis"
+    "install:deps": "npm install express cors express-rate-limit sqlite3 sqlite redis",
+    "test:basic": "node test-basic.js",
+    "test:scanner": "node test-scanner.js",
+    "test:simple": "npm run test:basic && npm run test:scanner"
   },
   "keywords": [
     "crypto",

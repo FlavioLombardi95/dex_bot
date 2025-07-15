@@ -5,7 +5,7 @@
  * =====================================
  * 
  * Gestisce deploy e configurazioni multi-network
- * Coordina operazioni tra BNB-Testnet e POL-Amoy
+ * Gestisce operazioni per BNB-Testnet
  */
 
 const fs = require('fs');
