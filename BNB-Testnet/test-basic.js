@@ -23,15 +23,16 @@ async function testBasicConnection() {
     console.log(`✅ Gas price: ${ethers.utils.formatUnits(gasPrice, 'gwei')} GWEI`);
     
     // Test balance (se wallet configurato)
-    if (config.wallet.privateKey !== 'your_testnet_private_key_here') {
+    if (config.wallet.privateKey && config.wallet.privateKey !== 'your_testnet_private_key_here') {
       console.log('\n4. Test wallet balance...');
       const wallet = new ethers.Wallet(config.wallet.privateKey, provider);
       const balance = await wallet.getBalance();
       console.log(`✅ Balance: ${ethers.utils.formatEther(balance)} BNB`);
       console.log(`✅ Address: ${wallet.address}`);
     } else {
-      console.log('\n4. ⚠️  Wallet non configurato');
-      console.log('   Aggiorna testnet-config.js con le tue chiavi testnet');
+      console.log('\n4. ⚠️  Wallet sicuro configurato');
+      console.log(`   Indirizzo: ${config.wallet.address}`);
+      console.log('   Usa: node simple-wallet.js per accesso sicuro');
     }
     
     // Test contratti PancakeSwap
@@ -47,9 +48,9 @@ async function testBasicConnection() {
     
     console.log('\n🎉 Test completato con successo!');
     console.log('\nProssimi passi:');
-    console.log('1. Configura wallet in testnet-config.js');
+    console.log('1. Usa: node simple-wallet.js per accesso sicuro');
     console.log('2. Ottieni BNB testnet dal faucet');
-    console.log('3. Esegui: node test-scanner.js');
+    console.log('3. Esegui: npm run test:scanner');
     
   } catch (error) {
     console.error('❌ Errore durante il test:', error.message);

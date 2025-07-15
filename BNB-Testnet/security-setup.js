@@ -336,9 +336,9 @@ class SecuritySetup {
         const localIPs = [];
         
         for (const name of Object.keys(interfaces)) {
-            for (const interface of interfaces[name]) {
-                if (interface.family === 'IPv4' && !interface.internal) {
-                    localIPs.push(interface.address);
+            for (const netInterface of interfaces[name]) {
+                if (netInterface.family === 'IPv4' && !netInterface.internal) {
+                    localIPs.push(netInterface.address);
                 }
             }
         }

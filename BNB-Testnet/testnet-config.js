@@ -13,10 +13,10 @@ module.exports = {
     backup: 'https://data-seed-prebsc-1-s1.binance.org:8545'
   },
   
-  // Wallet Configuration - INSERIRE LE TUE CHIAVI TESTNET
+  // Wallet Configuration - WALLET SICURO DEVELOPMENT
   wallet: {
-    privateKey: process.env.TESTNET_PRIVATE_KEY || 'your_testnet_private_key_here',
-    address: process.env.TESTNET_WALLET_ADDRESS || 'your_testnet_wallet_address_here'
+    privateKey: process.env.TESTNET_PRIVATE_KEY || null, // Usa wallet sicuro
+    address: process.env.TESTNET_WALLET_ADDRESS || '0x566474648C0DD8772040D29E46aC651dBC9A9470'
   },
   
   // Contract Addresses - PancakeSwap V2 Testnet

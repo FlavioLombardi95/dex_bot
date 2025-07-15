@@ -1,0 +1,11 @@
+{
+  "botToken": "7981615399:AAFcqw5GNEb-YIapj4fMy-v_y6-_LN9xkFM",
+  "chatId": "1231733242",
+  "enabled": true,
+  "minProfitPercent": 0.5,
+  "notificationTypes": {
+    "opportunities": true,
+    "errors": true,
+    "system": true
+  }
+}

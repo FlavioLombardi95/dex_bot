@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "checkInterval": 10000,
+  "alerts": {
+    "email": false,
+    "console": true,
+    "log": true
+  },
+  "checks": {
+    "balanceChanges": true,
+    "unauthorizedAccess": true,
+    "suspiciousTransactions": true,
+    "networkAnomaly": true
+  }
+}

@@ -14,6 +14,7 @@ const { spawn } = require('child_process');
 const { EventEmitter } = require('events');
 const fs = require('fs');
 const path = require('path');
+const TelegramNotifier = require('./telegram-notifier');
 
 class ParallelMonitoringSystem extends EventEmitter {
     constructor() {
@@ -47,6 +48,9 @@ class ParallelMonitoringSystem extends EventEmitter {
             priorityScheduling: true
         };
         
+        // Inizializza notifiche Telegram
+        this.telegramNotifier = new TelegramNotifier();
+        
         this.setupHealthMonitoring();
         this.setupSignalHandlers();
     }
@@ -60,10 +64,14 @@ class ParallelMonitoringSystem extends EventEmitter {
         console.log('💡 Modalità: Processi paralleli ottimizzati');
         console.log('🌐 Rete: BSC Testnet (senza Docker)');
         console.log('⚡ Performance: Massima efficienza CPU/RAM');
-        console.log('📊 Dati: Tempo reale con cache intelligente\n');
+        console.log('📊 Dati: Tempo reale con cache intelligente');
+        console.log('📱 Notifiche: Telegram integrate\n');
         
         // Verifica sistema
         await this.systemCheck();
+        
+        // Notifica avvio sistema
+        await this.telegramNotifier.sendSystemAlert('🚀 Sistema monitoraggio avviato su BSC Testnet');
         
         // Avvia processi paralleli
         const scannerPromises = [];
@@ -246,11 +254,20 @@ class ParallelMonitoringSystem extends EventEmitter {
                 this.stats.totalOpportunities++;
                 this.stats.lastOpportunityTime = Date.now();
                 this.emit('opportunity', { scanner: name, data: output });
+                
+                // Notifica Telegram per opportunità
+                this.handleOpportunityNotification(name, output);
             }
         });
         
         process.stderr.on('data', (data) => {
-            console.error(`[${name.toUpperCase()}] ERROR: ${data.toString().trim()}`);
+            const error = data.toString().trim();
+            console.error(`[${name.toUpperCase()}] ERROR: ${error}`);
+            
+            // Notifica errori critici
+            if (error.includes('RPC') || error.includes('network') || error.includes('timeout')) {
+                this.telegramNotifier.sendErrorAlert(new Error(error), name);
+            }
         });
         
         process.on('exit', (code) => {
@@ -258,11 +275,75 @@ class ParallelMonitoringSystem extends EventEmitter {
             
             if (this.config.restartOnCrash && code !== 0) {
                 console.log(`[${name.toUpperCase()}] Riavvio automatico...`);
+                this.telegramNotifier.sendSystemAlert(`🔄 Riavvio automatico processo ${name}`);
                 setTimeout(() => {
                     this.restartProcess(name);
                 }, 5000);
             }
         });
+    }
+    
+    /**
+     * Gestisce notifiche Telegram per opportunità
+     */
+    handleOpportunityNotification(scannerName, output) {
+        try {
+            // Parsing opportunità dal output
+            const opportunity = this.parseOpportunityFromOutput(output);
+            
+            if (opportunity) {
+                this.telegramNotifier.sendOpportunityAlert({
+                    path: opportunity.path,
+                    profitPercent: opportunity.profitPercent,
+                    amount: opportunity.amount,
+                    token: opportunity.token,
+                    initialPrice: opportunity.initialPrice,
+                    finalPrice: opportunity.finalPrice,
+                    priceDifference: opportunity.priceDifference
+                });
+            }
+        } catch (error) {
+            console.error('❌ Errore parsing opportunità:', error.message);
+        }
+    }
+    
+    /**
+     * Parsing opportunità dal output
+     */
+    parseOpportunityFromOutput(output) {
+        try {
+            // Pattern per opportunità triangolare
+            const triangularMatch = output.match(/OPPORTUNITÀ TROVATA: (.+?) \((\d+\.?\d*)%\)/);
+            if (triangularMatch) {
+                return {
+                    path: triangularMatch[1],
+                    profitPercent: parseFloat(triangularMatch[2]),
+                    amount: '1.0',
+                    token: 'BNB',
+                    initialPrice: 'N/A',
+                    finalPrice: 'N/A',
+                    priceDifference: `${triangularMatch[2]}%`
+                };
+            }
+            
+            // Pattern per opportunità profittevoli
+            const profitMatch = output.match(/PROFITTEVOLE: (.+?) - (\d+\.?\d*)%/);
+            if (profitMatch) {
+                return {
+                    path: profitMatch[1],
+                    profitPercent: parseFloat(profitMatch[2]),
+                    amount: '1.0',
+                    token: 'BNB',
+                    initialPrice: 'N/A',
+                    finalPrice: 'N/A',
+                    priceDifference: `${profitMatch[2]}%`
+                };
+            }
+            
+            return null;
+        } catch (error) {
+            return null;
+        }
     }
     
     /**
@@ -406,8 +487,11 @@ class ParallelMonitoringSystem extends EventEmitter {
     /**
      * Shutdown pulito
      */
-    shutdown() {
+    async shutdown() {
         console.log('🔄 Terminazione processi paralleli...');
+        
+        // Notifica shutdown
+        await this.telegramNotifier.sendSystemAlert('🛑 Sistema monitoraggio terminato');
         
         this.processes.forEach((process, name) => {
             console.log(`📴 Terminazione ${name}...`);

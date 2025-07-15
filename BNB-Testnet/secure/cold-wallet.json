@@ -1,0 +1,9 @@
+{
+  "encrypted": "{\"address\":\"7192052fee86ed53bfe73f37d2647f46846704d1\",\"id\":\"f0922a44-8a83-4c44-8451-9e23392c917c\",\"version\":3,\"crypto\":{\"cipher\":\"aes-128-ctr\",\"cipherparams\":{\"iv\":\"14c5ee3f069868721955cfbaac0c7abb\"},\"ciphertext\":\"35c745b81cbabf92dbd5ea7071f6eae852ea56c4c0e8f35b8b5cad4997040da2\",\"kdf\":\"scrypt\",\"kdfparams\":{\"salt\":\"dc99d3b23b58e30897c56824f37a48416e02e1a16fb2a5c8ff86e51336b296a8\",\"n\":131072,\"dklen\":32,\"p\":1,\"r\":8},\"mac\":\"96a82b7dab1790d60f8d9a79540a27eb956880cb7c38e972da2a1549c2911fa8\"},\"x-ethers\":{\"client\":\"ethers.js\",\"gethFilename\":\"UTC--2025-07-15T10-05-07.0Z--7192052fee86ed53bfe73f37d2647f46846704d1\",\"mnemonicCounter\":\"9b4f62392f290a3d90892e7003d1d765\",\"mnemonicCiphertext\":\"135a9727e96bd2c8a5664867c5d009cd\",\"path\":\"m/44'/60'/0'/0/0\",\"locale\":\"en\",\"version\":\"0.1\"}}",
+  "address": "0x7192052fEe86eD53bFE73F37d2647F46846704D1",
+  "purpose": "storage_only",
+  "permissions": [
+    "read_only"
+  ],
+  "created": "2025-07-15T10:05:07.383Z"
+}

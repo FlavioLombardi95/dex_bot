@@ -19,10 +19,12 @@ class ConfigManager {
                 name: 'BSC Testnet',
                 chainId: 97,
                 rpcUrls: [
+                    'https://bsc-testnet.public.blastapi.io',
+                    'https://bsc-testnet.publicnode.com',
+                    'https://bsc-testnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3',
+                    'https://bsc-testnet.blockpi.network/v1/rpc/public',
                     'https://data-seed-prebsc-1-s1.binance.org:8545',
-                    'https://data-seed-prebsc-2-s1.binance.org:8545',
-                    'https://data-seed-prebsc-1-s2.binance.org:8545',
-                    'https://data-seed-prebsc-2-s2.binance.org:8545'
+                    'https://data-seed-prebsc-2-s1.binance.org:8545'
                 ],
                 currency: 'BNB',
                 blockExplorer: 'https://testnet.bscscan.com',
